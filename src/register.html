@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+    <title>Register</title>
+</head>
+<body>
+    <div class="regsiterMain">
+        
+            <span class="registerContainer" >
+                <h3 style="font-size: 2em;">Get started</h3>
+                <span style="font-size: smaller;">Lets be part of our community</span>
+                <label for="name">Full Name *</label>
+                <input type="text" placeholder="Enter your full name" required>
+                <label for="contactNumber">Email *</label>
+                <input type="email" placeholder="Enter your email" id="RContactNumber" required>
+
+                <label for="password">Password *</label>
+                <div class="passDiv"><input type="password" class="passInputs" placeholder="Enter your password" id="RPassword"><i class="fa-regular fa-eye-slash eyeIc RIc" onclick="visibilityChange(this)"></i></div>
+
+                <label for="confirmPassword">Confirm Password *</label>
+                <div class="passDiv"><input type="password" class="passInputs" placeholder="Confirm your password" id="confirmRPassword"><i class="fa-regular fa-eye-slash eyeIc RIc" onclick="visibilityChange2(this)"></i></div>
+                <div class="remember">
+                    <div><input type="checkbox" id="termsAndConditions" required>
+                        <label for="rememberCheckBox">Agree to <a href="termsAndConditions.html">Terms and conditions</a></label></div>
+                </div>
+                <button class="btn btn-info" type="submit" style="color: white;">Register</button>
+                <span style="margin-top: 1em; font-weight: bold;">Already registered ? <a href="index.html">Sign in here</a></span>
+            
+    </div>
+</body>
+<script src="registerScript.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
+</html>

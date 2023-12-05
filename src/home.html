@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="homeCSS.css">
+    <title>Home</title>
+</head>
+<body>
+    <div class="main">
+      
+        <div class="navbar">
+          <div class="logo">Logo</div>
+          <ul>
+            <li>Home</li>
+            <li>About</li>
+            <li>Services</li>
+            <li>Contact</li>
+          </ul>
+        </div>
+        <div id="loginModel">
+          <span id="loginModelText">Logged In</span>
+        </div>
+        <div class="bodyContainer">
+          Lorem ipsum, dolor sit amet consectetur adipisicing elit. Id similique nam vero quod reprehenderit atque repellendus nemo, reiciendis quidem, maiores quasi blanditiis autem ab molestiae delectus tempora dicta, sit rerum odio. Repellendus porro praesentium repudiandae. Assumenda accusantium fugit possimus adipisci aspernatur, maxime eum aut consequuntur minima doloribus molestias velit repudiandae harum quod quia nemo mollitia repellat eius, expedita quisquam est in iusto? Error minima hic officiis fuga quae eos voluptates aperiam minus assumenda facilis tenetur suscipit maxime doloribus beatae in labore quisquam animi adipisci provident voluptatum necessitatibus, velit esse. Sunt culpa rem, iusto qui distinctio aut cumque nisi. Adipisci, sint!
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Doloremque nulla dolor impedit aliquam veritatis ipsa corrupti amet eaque quibusdam fugit ipsum unde magni beatae laborum molestias, est voluptatem nam sint vero temporibus ullam quasi illum iusto. Dolores facilis beatae inventore recusandae praesentium natus suscipit eveniet, fugiat voluptate perferendis harum quisquam?
+        </div>
+    </div>
+</body>
+<script>
+  const alertModel=document.getElementById('loginModel');
+  const alertText=document.getElementById('loginModelText');
+
+  function alertMessage(text){
+    alertText.innerHTML=text;
+   setTimeout(() => {
+    alertModel.style.top="0vh";
+   }, 500);
+    setTimeout(()=>{
+    alertModel.style.top="-50vh";
+    },1500);
+}
+alertMessage("Logged in");
+</script>
+</html>

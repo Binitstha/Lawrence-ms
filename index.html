@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="src/style.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
+    integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <title>Authenication Page</title>
+<script src="./src/auth.js"></script>
+
+</head>
+
+<body>
+  <div id="loginModel">
+    <span id="loginModelText">Logged In</span>
+  </div>
+  <div class="main">
+
+    <div class="container">
+
+      <h3 style="font-size: 2em">Welcome Back</h3>
+      Please login your account
+      <label for="email">Email *</label>
+      <input type="email" placeholder="Enter your email" id="email" required />
+
+      <div class="passDiv">
+        <label for="password">Password *</label>
+        <input type="password" placeholder="Enter your password" id="password" required />
+        <i class="fa-regular fa-eye-slash eyeIc" onclick="visibilityChange(this)"></i>
+      </div>
+
+      <div class="remember">
+        <div>
+          <input type="checkbox" id="rememberCheckBox" />
+          <label for="rememberCheckBox">Remember me</label>
+        </div>
+        <a href="#" style="
+              display: flex;
+              font-size: 0.7em;
+              justify-content: center;
+              align-items: center;
+            ">Forget password
+        </a>
+      </div>
+      <button class="loginBtn" type="submit" onclick="auth()">
+        Login
+      </button>
+      <span class="registerSpan">
+        <p>Don't have an account?</p>
+        <a href="register.html">Register here</a>
+      </span>
+    </div>
+  </div>
+</body>
+<!-- <script src="xHttpsRequest.js"></script> -->
+<script src="./src/script.js"></script>
+</html>

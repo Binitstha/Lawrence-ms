@@ -1,0 +1,42 @@
+*{
+    margin: 0px;
+    padding: 0px;
+}
+body{
+    height: 100vh;
+}
+.navbar{
+    display: flex;
+    justify-content:space-between;
+    background-color: rgb(159, 131, 223);
+    font-size: 1.3em;
+    color: white;
+}
+.navbar ul{
+    display: flex;
+    justify-content: space-between;
+    gap: 3em;
+    list-style: none;
+    padding: 1em 3em;
+}
+body{
+    background-color: rgb(125, 106, 161);
+}
+#loginModel{
+    position: relative;
+    top: -50vh;
+    text-align: center;
+    width: 100%;
+    transition: 0.3s ease-in-out;
+}
+#loginModelText{
+    background-color: skyblue;
+    padding: 1em 2em;
+    font-size: larger;
+    border-radius: 5px;
+    color: white;
+
+}
+.bodyContainer{
+    margin: 0px 10em;
+}
