@@ -1,31 +1,22 @@
-const students=[
-    {
-        userName:"Sachet Subedi",
-        uid:"01",
-    },
-    {
-        userName:"Sachet Subedi",
-        uid:"02",
-    },
-    {
-        userName:"Sachet Subedi",
-        uid:"03",
-    },
-    {
-        userName:"Sachet Subedi",
-        uid:"04",
-    },
-    {
-        userName:"Sachet Subedi",
-        uid:"05",
+
+
+fetch('http://localhost:3000/getAttendance',{method:'GET'})
+.then((response)=>{
+    if(!response.ok){
+        console.log("Response Error");
     }
-];
-const attSheet=document.getElementById('attandence');
-students.forEach((student)=>{
+    return response.json();
+}).then((data)=>{
+   
+    const attSheet=document.getElementById('attandence');
+    data.forEach((student)=>{
     const listItem=document.createElement('li');
-    listItem.innerHTML=`<div class="st-name">${student.userName}</div>
-    <input type="checkbox" class="st-status rounded-full " data-userName='${student.userName}' data-uid='${student.uid}' ></input>`;
+    listItem.innerHTML=`<div class="st-name ">${student.userName}</div>
+    <input type="checkbox" class="st-status rounded-full " data-userName='${student.userName}' data-email='${student.email}' ></input>`;
     listItem.classList.add('flex');
     listItem.classList.add('justify-between');
     attSheet.appendChild(listItem);
 })
+})
+console.log(students);
+
