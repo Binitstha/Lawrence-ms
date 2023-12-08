@@ -125,18 +125,24 @@
             </div>
              <!-- calander and notices -->
             <div class="large-boxes flex pl-10">
-                <div class="calander border m-2 mt-10 rounded-xl shadow-lg h-full w-[50%]">
+                <div class="calander border m-2 mt-10 rounded-xl shadow-lg h-96 w-[50%]">
                     <div class="flex text-lg p-4">Calander</div>
                 </div>
-                <div class="notices shadow-lg  m-2 mt-10 rounded-xl  border h-full w-[50%]">
-                    <div class="flex text-lg p-4">Notices</div>
+                <div class="notices bg-blue-200 shadow-lg  m-2 mt-10 rounded-xl  border h-96 w-[50%] ">
+                    <div class="flex text-lg p-4 ">Notices</div>
+                    <div id="noticeContainer" class=" overflow-y-scroll h-80">
+                        
+                    </div>
                 </div>
             </div>
         </div>
        
         </div>
     </main>
+
 </body>
 <script src="https://cdn.tailwindcss.com"></script>
+<script src="src/noticesRenderer.js"></script>
+
 
 </html>
