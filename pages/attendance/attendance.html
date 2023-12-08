@@ -1,0 +1,114 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="attendance.css">
+    <title>Attendance</title>
+</head>
+<body>
+    
+<body class="p-0 m-0">
+    <div class="navbar flex m-0 justify-between px-2 items-center bg-blue-500">
+        <!-- college logo -->
+        <div class="logo flex  justify-center items-center  ">
+            <img src="../../assets/logo.png" class="h-16" alt="user photo">
+        </div>
+        <!-- navigation links -->
+        <div class="flex justify-between gap-16 items-center ">
+            <div class="navigation flex">
+                <ul class="flex gap-10 text-xl text-white">
+                    <a href="">
+                        <li>Dashboard</li>
+                    </a>
+                    <a href="">
+                        <li>Semester</li>
+                    </a>
+                    <a href="">
+                        <li>Notices</li>
+                    </a>
+                </ul>
+            </div>
+            <!-- user profile -->
+            <div class="user-profile  rounded-full py-1 pl-2 pr-5  bg-blue-200 w-fit">
+                <div class="profile-img flex justify-between items-center ">
+                    <div class="rounded-full border border-black w-10 h-10 mr-2">
+                        <!-- <img src="assets/logo.png" class="h-11" alt=""> -->
+                    </div>
+                    <div class="name-and-position">
+                        <div class="name text-black font-bold text-md leading-[15px]">Binti shrestha</div>
+                        <div class="position text-gray-500">Student</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Main section -->
+    <main class="  h-full flex bg-blue-300">
+        <!-- sidebar -->
+        <aside class="sidebar w-[15%] h-full bg-blue-400 pr-5 pl-5"> <br>
+            <span class="font-bold text-lg pl-3 pt-3">Menu</span>
+            <ul class="flex sidePanel-list flex-col  pt-10">
+                <a href="">
+                    <li class="rounded-md shadow-lg px-5 py-1 text-lg mb-4 bg-blue-200 hover:bg-blue-100">Dashboard </li>
+                </a>
+                <a href="">
+                    <li class="rounded-md shadow-lg px-5 py-1 text-lg mb-4 bg-blue-200 hover:bg-blue-100">Semesters</li>
+                </a>
+                <a href="">
+                    <li class="rounded-md shadow-lg px-5 py-1 text-lg mb-4 bg-blue-200 hover:bg-blue-100">Subjects</li>
+                </a>
+                <a href="">
+                    <li class="rounded-md shadow-lg px-5 py-1 text-lg mb-4 bg-blue-200 hover:bg-blue-100">Students</li>
+                </a>
+                <a href="">
+                    <li class="rounded-md shadow-lg px-5 py-1 text-lg mb-4 bg-blue-200 hover:bg-blue-100">Attendence</li>
+                </a>
+                <a href="">
+                    <li class="rounded-md shadow-lg px-5 py-1 text-lg mb-4 bg-blue-200 hover:bg-blue-100">Assignments</li>
+                </a>
+                <a href="">
+                    <li class="rounded-md shadow-lg px-5 py-1 text-lg mb-4 bg-blue-200 hover:bg-blue-100">Labworks</li>
+                </a>
+                <a href="">
+                    <li class="rounded-md shadow-lg px-5 py-1 text-lg mb-4 bg-blue-200 hover:bg-blue-100">Question Papers</li>
+                </a>
+            </ul>
+        </aside>
+        <!-- main box -->
+        <div class="mainBox w-[87%]  h-full flex flex-col">
+            <div class="flex text-3xl font-bold pl-5 pt-5">Attendance</div>
+            <div class="date-and-semester flex justify-between w-fit gap-5 text-lg m-5 mt-9">
+                <div class="date rounded-lg bg-white px-3 py-1 flex justify-center items-center">2020/20/20</div>
+                <div class=" rounded-md ">
+                    <select class="semester bg-white flex rounded-md px-3 py-2 text-center justify-center items-center :select outline-none " id="">
+                        <option value="" >Semester 1</option>
+                        <option value="">Semester 2</option>
+                        <option value="">Semester 3</option>
+                    </select>
+                </div>
+            </div>
+
+
+            <div class="attandence-sheet rounded-lg shadow-lg bg-white ml-5 mt-3 p-2  w-max min-w-[18.2rem]" >
+                <div class="shhet-top-bar font-bold text-2xl">
+                    Students
+                </div>
+                <!-- students list -->
+                <div class="students-list mt-5">
+                    <ul id="attandence" class="text-2xl">
+                        <!-- students injected from js -->
+                    </ul>
+                </div>
+            </div>
+            <div class="save-changes  ml-5 mt-3 ">
+                <button class="save-changes-btn bg-white px-4 py-1 rounded-lg hover:bg-blue-100 " type="submit" id="submitBtn">Save Changes</button>
+            </div>
+        </div>
+       
+        </div>
+    </main>
+</body>
+<script src="https://cdn.tailwindcss.com"></script>
+<script src="renderer.js"></script>
+<script src="dataCollector.js"></script>
+</html>
