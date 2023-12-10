@@ -1,8 +1,8 @@
 const students=[
-    // {
-    //     studentid : 101,
-    //     studentname:"Binit shrestha",
-    // },
+     {
+         studentid : 101,
+         studentname:"Binit shrestha",
+     },
     {
         studentid : 102,
         studentname:"Binit shrestha",
