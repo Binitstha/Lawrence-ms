@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- <link rel="stylesheet" href="attendance.css" /> -->
+    <!-- <link rel="stylesheet" href="style.css" /> -->
+    <title>Attendance</title>
+  </head>
+
+  <body>
+    <body class="p-0 m-0">
+      <div
+        class="navbar flex m-0 justify-between px-2 items-center bg-blue-500"
+      >
+        <!-- college logo -->
+        <div class="logo flex justify-center items-center">
+          <img src="" class="h-16" alt="user photo" />
+        </div>
+        <!-- navigation links -->
+        <div class="flex justify-between gap-16 items-center">
+          <div class="navigation flex">
+            <ul class="flex gap-10 text-xl text-white">
+              <a href="">
+                <li>Dashboard</li>
+              </a>
+              <a href="">
+                <li>Semester</li>
+              </a>
+              <a href="">
+                <li>Notices</li>
+              </a>
+            </ul>
+          </div>
+          <!-- user profile -->
+          <div
+            class="user-profile rounded-full py-1 pl-2 pr-5 bg-blue-200 w-fit"
+          >
+            <div class="profile-img flex justify-between items-center">
+              <div class="rounded-full border border-black w-10 h-10 mr-2">
+                <!-- <img src="assets/logo.png" class="h-11" alt=""> -->
+              </div>
+              <div class="name-and-position">
+                <div class="name text-black font-bold text-md leading-[15px]">
+                  Binti shrestha
+                </div>
+                <div class="position text-gray-500">Student</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- Main section -->
+      <main class="h-full flex bg-blue-300">
+        <!-- sidebar -->
+        <aside class="sidebar w-[15%] h-full bg-blue-400 pr-5 pl-5">
+          <br />
+          <span class="font-bold text-lg pl-3 pt-3">Menu</span>
+          <ul class="flex sidePanel-list flex-col pt-10">
+            <a href="">
+              <li
+                class="rounded-md shadow-lg px-5 py-1 text-lg mb-4 bg-blue-200 hover:bg-blue-100"
+              >
+                Dashboard
+              </li>
+            </a>
+            <a href="">
+              <li
+                class="rounded-md shadow-lg px-5 py-1 text-lg mb-4 bg-blue-200 hover:bg-blue-100"
+              >
+                Semesters
+              </li>
+            </a>
+            <a href="">
+              <li
+                class="rounded-md shadow-lg px-5 py-1 text-lg mb-4 bg-blue-200 hover:bg-blue-100"
+              >
+                Subjects
+              </li>
+            </a>
+            <a href="">
+              <li
+                class="rounded-md shadow-lg px-5 py-1 text-lg mb-4 bg-blue-200 hover:bg-blue-100"
+              >
+                Students
+              </li>
+            </a>
+            <a href="">
+              <li
+                class="rounded-md shadow-lg px-5 py-1 text-lg mb-4 bg-blue-200 hover:bg-blue-100"
+              >
+                Attendence
+              </li>
+            </a>
+            <a href="">
+              <li
+                class="rounded-md shadow-lg px-5 py-1 text-lg mb-4 bg-blue-200 hover:bg-blue-100"
+              >
+                Assignments
+              </li>
+            </a>
+            <a href="">
+              <li
+                class="rounded-md shadow-lg px-5 py-1 text-lg mb-4 bg-blue-200 hover:bg-blue-100"
+              >
+                Labworks
+              </li>
+            </a>
+            <a href="">
+              <li
+                class="rounded-md shadow-lg px-5 py-1 text-lg mb-4 bg-blue-200 hover:bg-blue-100"
+              >
+                Question Papers
+              </li>
+            </a>
+            <a href="../College events/event.html">
+              <li
+                class="rounded-md shadow-lg px-5 py-1 text-lg mb-4 bg-blue-200 hover:bg-blue-100"
+              >
+                Events
+              </li>
+            </a>
+          </ul>
+        </aside>
+        <!-- main box -->
+        <div class="mainBox w-[87%] h-full flex flex-col">
+          <div class="p-5">
+            <button id="addEventBtn" class="text-xl bg-white rounded p-1">
+              ADD +
+            </button>
+          </div>
+          <div
+            id="eventAdderBox"
+            class="absolute hidden translate-x-[80%] rounded-sm flex justify-center items-center h-[45rem] m-3"
+          >
+            <div class="rounded-lg bg-gray-300 w-[30rem] h-[30rem]">
+              <div class="flex justify-between bg-gray-500 rounded-t-lg h-fit">
+                <div class="px-3 py-2">Add Events</div>
+                <div
+                  id="addEventClose"
+                  class="hover:bg-red-500 w-9 flex justify-center items-center text-xl cursor-pointer rounded-tr-lg"
+                >
+                  X
+                </div>
+              </div>
+              <div class="grid p-5 relative">
+                <label for="eventTitle" class="text-2xl">Event</label>
+                <input
+                  required
+                  type="text"
+                  name="eventTitle"
+                  id="eventTitle"
+                  class="h-8 my-2 p-1"
+                />
+                <label for="eventDesc">Description</label>
+                <textarea
+                  name="eventDesc"
+                  id="eventDesc"
+                  class="flex h-[14rem] my-2 resize-none p-1"
+                  required
+                ></textarea>
+                <button
+                  type="submit"
+                  id="eventSubmitBtn"
+                  class="absolute bottom-[-1.8rem] right-5 bg-gray-200 w-fit px-3 py-1"
+                >
+                  Submit
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </main>
+    </body>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="./addEvents.js"></script>
+  </body>
+</html>
