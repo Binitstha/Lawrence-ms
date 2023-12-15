@@ -48,7 +48,7 @@ submitMarksBtn.addEventListener("click", () => {
         Number(assignmentInput.value);
     const status = {
         "marks": calculateMarks,
-        "studentid": 102,
+        "studentid": 103,
         "semester": "1st",
         "remark": "Fail"
     };
