@@ -1,0 +1,49 @@
+<div class="mainBox w-full md:w-full  h-full flex flex-col px-10">
+    <div class="flex flex-col">
+        <div class="flex text-xl font-bold  pt-5  md:ml-0">Attendance</div>
+        <div class="date-and-semester flex justify-between w-fit gap-5 text-lg m-5 mt-9 relative">
+            <div
+                class="date rounded-lg bg-white shadow-md hover:shadow-xl transition-all ease-in-out  px-3  flex justify-center items-center">
+                2020/20/20 <span
+                    class="absolute rounded-full px-3 bg-blue-300 text-sm -left-3 -top-3">Date</span> </div>
+            <div class=" rounded-md relative">
+                <select
+                    class="semester cursor-pointer bg-white shadow-md hover:shadow-xl transition-all ease-in-out  flex rounded-md py-2 px-2 text-center justify-center items-center :select outline-none "
+                    id="">
+                    <option value="1">Semester 1</option>
+                    <option value="2">Semester 2</option>
+                    <option value="3">Semester 3</option>
+                    <option value="4">Semester 4</option>
+
+                    <option value="5">Semester 5</option>
+                    <option value="6">Semester 6</option>
+                    <option value="7">Semester 7</option>
+                    <option value="8">Semester 8</option>
+
+                </select>
+                <span class="absolute rounded-full px-3 bg-blue-300 text-sm -left-3 -top-3">Semester</span>
+            </div>
+        </div>
+
+
+        <div class="flex">
+            <div class="attandence-sheet rounded-lg shadow-lg bg-white  mt-3 p-2 w-[90%] md:w-[60%]">
+                <div class="shhet-top-bar font-bold text-2xl">
+                    Students
+                </div>
+                <!-- students list -->
+                <div class="students-list mt-5">
+                    <ul id="attandence" class="text-2xl">
+                        <!-- students injected from js -->
+                    </ul>
+                </div>
+            </div>
+            <div class="rounded-lg shadow-lg bg-white ml-5 mt-3 p-2 w-[90%] md:w-[60%]">awdasd</div>
+
+        </div>
+    </div>
+    <div class="save-changes  mt-3 ">
+        <button class="save-changes-btn shadow-md hover:shadow-xl bg-white px-4 py-1 rounded-lg  "
+            type="submit" id="submitBtn">Save Changes</button>
+    </div>
+</div>
