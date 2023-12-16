@@ -15,4 +15,29 @@
             
         </div>
     </div>
+
+    <!-- assignemnt view model -->
+
+    <div id="assignment-view-modal" class=" justify-center items-center transition-all ease-in-out duration-500  absolute top-[-100vh] w-full h-full">
+        <div class="assignment-container w-[50%] h-[50%] ml-[25%] mt-[10%]  bg-white rounded-lg shadow-lg">
+            <div class="header flex justify-between">
+                <span class="p-2 font-bold">Assignment</span>
+                <div id="ass-model-close-btn" class="flex justify-center items-center px-2 py-1 hover:bg-gray-300 rounded-lg cursor-pointer">X</div>
+            </div>
+            <div class="ass-body m-2 p-2 bg-gray-200 rounded-lg">
+                <div class="ass-header text-3xl font-bold pb-4" id="assignmentHeader">
+                    Assignment header
+                </div>
+                <div class="ass-desc h-56 overflow-y-scroll" id="assignmentDescription">
+                    Assignment description
+                </div>
+            </div>
+            <div class="dates flex justify-between p-2">
+                <div>Assigned date: <span id="assignmentAssignedDate">2020/20/20</span></div>
+                <div>Due date: <span id="assignmentDueDate">2020/20/20</span></div>
+            </div>
+        </div>
+    </div>
 </div>
+<script src="../scripts/renderer/assignment/assignmentRenderer.js"></script>
+<script src="../scripts/renderer/assignment/assignmentModelController.js"></script>
