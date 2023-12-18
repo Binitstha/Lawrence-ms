@@ -47,30 +47,29 @@ const semesterDiv = document.getElementById("semesterDiv")
 semesters.forEach((e) => {
     const listItem = document.createElement("div")
     let subjectHTML = ''
-    e.subjects.forEach((el)=>{
-        subjectHTML+=`<p class="text-[.9rem]">${el}</p>`
+    e.subjects.forEach((el) => {
+        subjectHTML += `<p class="text-[.9rem]">${el}</p>`
     })
 
     listItem.innerHTML = `<div class="p-2 rounded-md cursor-pointer hover:bg-slate-300 hover:scale-105 transition-all ease-in-out shadow-xl box1 w-[17rem] h-[15rem]">
-    <div class="text-3xl">semester ${e.id}</div>
+    <div class="text-3xl">SEMESTER ${e.id}</div>
         <div class="h-[64%] p-2">
         ${subjectHTML}
         </div>
         <hr>
         <div class="flex justify-end">
-            <a id="subjectBtn" href="subject.html" class="mt-2 bg-slate-200 rounded-sm p-1 w-24">Subjects -></a>
+            <a id="subjectBtn" href="subject.html" class="mt-2 bg-slate-200 rounded-sm p-1 w-24" onclick="setSemesterIdCookie(${e.id})">Subjects -></a>
         </div>
         </div>`
     semesterDiv.appendChild(listItem)
 })
 
+function setSemesterIdCookie(semesterId) {
 
+    const expirationDate = new Date();
+    expirationDate.setSeconds(expirationDate.getSeconds() + 5000); // Set expiration to 30 minutes from now
 
+    const cookieString = `semesterId=${semesterId}; expires=${expirationDate.toUTCString()}; path=/`;
 
-// const subjectBtn = document.getElementById("subjectBtn")
-
-// subjectBtn.addEventListener('click',()=>{
-//     console.log("HEllllo")
-// })
-
-// console.log("Helleleal")
+    document.cookie = cookieString;
+}
