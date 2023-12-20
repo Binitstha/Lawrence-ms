@@ -53,7 +53,6 @@ submitMarksBtn.addEventListener("click", () => {
         "remark": "Fail"
     };
     try {
-
         fetch("http://localhost:3000/internalMarks", {
             method: 'POST',
             headers: {

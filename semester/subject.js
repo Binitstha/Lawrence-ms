@@ -2,6 +2,7 @@ const subjects = [{
     id: 1,
     semSubs: [
         {
+            subjectCode: ["csc1","csc2","csc3","csc4","csc5"],
             SubjectName: ["Physics", "Digital logic", "Mathematics I", "Introduction of Information and technology", "C programming"],
             ChapterName: [
                 "1Chapter1", "1chapter2", "1chapter3", "1chapter4", "1chapter5"
@@ -13,6 +14,7 @@ const subjects = [{
     id: 2,
     semSubs: [
         {
+            subjectCode: ["csc1","csc2","csc3","csc4","csc5"],
             SubjectName: ["Microprocessor", "sub2", "sub2", "sub2", "sub2", "sub2",],
             ChapterName: [
                 "1Chapter1", "1chapter2", "1chapter3", "1chapter4", "1chapter5"
@@ -24,6 +26,7 @@ const subjects = [{
     id: 3,
     semSubs: [
         {
+            subjectCode: ["csc1","csc2","csc3","csc4","csc5"],
             SubjectName: ["Physics", "sub2", "sub2", "sub2", "sub2", "sub2",],
             ChapterName: [
                 "1Chapter1", "1chapter2", "1chapter3", "1chapter4", "1chapter5"
@@ -35,6 +38,7 @@ const subjects = [{
     id: 4,
     semSubs: [
         {
+            subjectCode: ["csc1","csc2","csc3","csc4","csc5"],
             SubjectName: ["Physics", "sub2", "sub2", "sub2", "sub2", "sub2",],
             ChapterName: [
                 "1Chapter1", "1chapter2", "1chapter3", "1chapter4", "1chapter5"
@@ -46,6 +50,7 @@ const subjects = [{
     id: 5,
     semSubs: [
         {
+            subjectCode: ["csc1","csc2","csc3","csc4","csc5"],
             SubjectName: ["Physics", "sub2", "sub2", "sub2", "sub2", "sub2",],
             ChapterName: [
                 "1Chapter1", "1chapter2", "1chapter3", "1chapter4", "1chapter5"
@@ -57,6 +62,7 @@ const subjects = [{
     id: 6,
     semSubs: [
         {
+            subjectCode: ["csc1","csc2","csc3","csc4","csc5"],
             SubjectName: ["Physics", "sub2", "sub2", "sub2", "sub2", "sub2",],
             ChapterName: [
                 "1Chapter1", "1chapter2", "1chapter3", "1chapter4", "1chapter5"
@@ -68,6 +74,7 @@ const subjects = [{
     id: 7,
     semSubs: [
         {
+            subjectCode: ["csc1","csc2","csc3","csc4","csc5"],
             SubjectName: ["Physics", "sub2", "sub2", "sub2", "sub2", "sub2",],
             ChapterName: [
                 "1Chapter1", "1chapter2", "1chapter3", "1chapter4", "1chapter5"
@@ -79,6 +86,7 @@ const subjects = [{
     id: 8,
     semSubs: [
         {
+            subjectCode: ["csc1","csc2","csc3","csc4","csc5"],
             SubjectName: ["Physics", "sub2", "sub2", "sub2", "sub2", "sub2",],
             ChapterName: [
                 "1Chapter1", "1chapter2", "1chapter3", "1chapter4", "1chapter5"
@@ -92,23 +100,24 @@ function subNameRender(semesterId) {
     const selectedSemester = subjects.find((sem) => sem.id == semesterId)
     if (selectedSemester) {
         selectedSemester.semSubs.forEach((subjects) => {
-            subjects.SubjectName.forEach((SubjectName) => {
+            // console.log(subjects.subjectCode)
+            subjects.SubjectName.forEach((SubjectName,index) => {
                 const listItem = document.createElement("div")
                 let chapterHTML = ''
                 subjects.ChapterName.forEach((ChapterName) => {
                     chapterHTML += `<p class="text-[.9rem]">${ChapterName}</p>`
                 })
+                const subjectCode = subjects.subjectCode[index];
                 listItem.innerHTML = `<div class="p-2 rounded-md cursor-pointer hover:bg-slate-300 hover:scale-105 transition-all ease-in-out shadow-xl box2 w-[17rem] h-[15rem]">
-                                          <div class="text-3xl h-[2.4rem] text-ellipsis truncate">${SubjectName}</div>
-                                          <div class="h-[64%] p-2">
-                                            ${chapterHTML}
-                                          </div>
-                                          <hr>
-                                          <div class="flex justify-end">
-                                          <a href="subject.html" class="mt-2 bg-slate-200 rounded-sm p-1 w-24">Syllabus -></a>
-                                          </div>
-                                          </div>`
-
+                <div class="text-3xl h-[2.4rem] text-ellipsis truncate">${SubjectName}</div>
+                <div class="h-[64%] p-2">
+                ${chapterHTML}
+                </div>
+                <hr>
+                <div class="flex justify-end">
+                <a id="syllabusBtn" href="syllabus.html" class="mt-2 bg-slate-200 rounded-sm p-1 w-24" onclick="setSubjectIdCookie('${subjectCode}')">Syllabus -></a>
+                </div>
+                </div>`
                 subjectDiv.appendChild(listItem)
             })
         })
@@ -135,4 +144,15 @@ function getCookie(name) {
         }
     }
     return null;
+}
+
+
+function setSubjectIdCookie(subjectCode) {
+
+    const expirationDate = new Date();
+    expirationDate.setSeconds(expirationDate.getSeconds() + 5);
+
+    const cookieString = `subjectCode=${subjectCode}; expires=${expirationDate.toUTCString()}; path=/`;
+
+    document.cookie = cookieString;
 }
