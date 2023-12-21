@@ -115,9 +115,21 @@
             <- Back </button></a>
       </div>
       <p class="text-3xl m-3">Syllabus</p>
-      <div id="syllabusDiv" class="grid gap-2 text-2xl flex-wrap mt-7 mx-12">
-      </div>
-      <button class="m-5 border-2 p-2 rounded" id="saveBtn">Save changes</button>
+      <table>
+        <thead class="">
+          <tr>
+            <th class="p-2 border-2 text-left">SN.</th>
+            <th class="p-2 border-2 text-left">Chapter name</th>
+            <th class="p-2 border-2 text-left">status</th>
+          </tr>
+        </thead>
+        <tbody id="contentTable" class="border-2">
+        </tbody>
+      </table>
+      <div id="syllabusDiv" class="grid gap-2 text-2xl flex-wrap mt-7 mx-12"></div>
+      <button class="m-5 border-2 p-2 rounded" id="saveBtn">
+        Save changes
+      </button>
     </section>
   </main>
 </body>

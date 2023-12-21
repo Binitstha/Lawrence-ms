@@ -1,7 +1,8 @@
-const syllabusDiv = document.getElementById("syllabusDiv")
+const contentTable = document.getElementById("contentTable")
 
 const subjectCode = getCookie('subjectCode');
 document.addEventListener('DOMContentLoaded', function () {
+
     const semesterId = getCookie('semesterId');
     const semesteriddiv = document.getElementById("semesterId")
     const semesterItem = document.createElement("p")
@@ -9,24 +10,29 @@ document.addEventListener('DOMContentLoaded', function () {
     semesteriddiv.appendChild(semesterItem)
 
     const selectedSemester = chapterName.find((sem) => sem.semesterId == semesterId)
-    if (selectedSemester) {
-        selectedSemester.subjects.forEach((subjects) => {
-            if (subjects.subjectId == subjectCode) {
 
-                subjects.chapters.forEach((chapters, index) => {
-                    const listItem = document.createElement("div")
-                    listItem.innerHTML = `<div>
-                                    <label>
-                                      ${index + 1 + "."}
-                                      ${chapters}
-                                      <input class="w-5 h-5" data-index=${index + 1} id="chapterComplete" name="chapterComplete" type="checkbox"/>
-                                    </label>
-                                    </div>`
-                    syllabusDiv.appendChild(listItem)
-                })
+    fetch('http://localhost:3000/syllabusLoad', {
+        method: 'GET',
+        headers: {
+            'Content-type': "application/json",
+        },
+    })
+        .then(response => response.json())
+
+        .then(data => {
+            const filtersub = data.result.filter((e)=>e.subjectCode == subjectCode)
+            if (filtersub && filtersub.length > 0) {
+                const allStatus = filtersub.map(e => e.status).join(', ').split(', ');
+                chapterRenderer(selectedSemester, allStatus)
+                console.log("Data result not empty")
+
+            }
+            else {
+                chapterRenderer(selectedSemester)
+                console.log("Data result empty")
             }
         })
-    }
+        .catch(err => console.log(err))
 })
 function getCookie(name) {
     const cookies = document.cookie.split(';');
@@ -49,7 +55,6 @@ saveBtn.addEventListener('click', () => {
         const status = checkBox.checked
         return ({ chapterid, status, Subjectcode })
     })
-    console.log(JSON.stringify(syllabusData))
 
     fetch('http://localhost:3000/syllabus', {
         method: 'POST',
@@ -64,8 +69,41 @@ saveBtn.addEventListener('click', () => {
         })
         .then((data) => {
             console.log(data)
+            window.location.href = "./syllabus.html"
         }).catch((err => {
             console.log(err)
         }))
 
 })
+
+function chapterRenderer(selectedSemester, statuses) {
+    contentTable.innerHTML = '';
+    if (selectedSemester) {
+        selectedSemester.subjects.forEach((subjects) => {
+            if (subjects.subjectId == subjectCode) {
+                subjects.chapters.forEach((chapters, index) => {
+                    const listItem = document.createElement("tr");
+                    const checkboxId = `chapterComplete_${index + 1}`;
+                    if (statuses) {
+                        const status = statuses[index]
+                        if (status === 'complete') {
+                            listItem.innerHTML = `<td class="border-2">${index + 1 + "."}</td>
+                            <td class="border-2">${chapters}</td>
+                            <td class="border-2 text-center">&checkmark;</td>`;
+                        } else if (status === 'incomplete' || !status) {
+                            listItem.innerHTML = `<td class="border-2">${index + 1 + "."}</td>
+                            <td class="border-2">${chapters}</td>
+                            <td class="borcer-2 text-center"><input class="w-5 h-5" data-index=${(subjectCode) + (-(index + 1))} id="${checkboxId}" name="chapterComplete" type="checkbox"/></td>`
+                        }
+                    }
+                    else {
+                        listItem.innerHTML = `<td class="border-2">${index + 1 + "."}</td>
+                        <td class="border-2">${chapters}</td>
+                        <td class="borcer-2 text-center"><input class="w-5 h-5" data-index=${(subjectCode) + (-(index + 1))} id="${checkboxId}" name="chapterComplete" type="checkbox"/></td>`
+                    }
+                    contentTable.appendChild(listItem);
+                });
+            }
+        });
+    }
+}

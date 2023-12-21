@@ -100,7 +100,6 @@ function subNameRender(semesterId) {
     const selectedSemester = subjects.find((sem) => sem.id == semesterId)
     if (selectedSemester) {
         selectedSemester.semSubs.forEach((subjects) => {
-            // console.log(subjects.subjectCode)
             subjects.SubjectName.forEach((SubjectName,index) => {
                 const listItem = document.createElement("div")
                 let chapterHTML = ''
@@ -108,6 +107,7 @@ function subNameRender(semesterId) {
                     chapterHTML += `<p class="text-[.9rem]">${ChapterName}</p>`
                 })
                 const subjectCode = subjects.subjectCode[index];
+                const subjectName = subjects.SubjectName[index];
                 listItem.innerHTML = `<div class="p-2 rounded-md cursor-pointer hover:bg-slate-300 hover:scale-105 transition-all ease-in-out shadow-xl box2 w-[17rem] h-[15rem]">
                 <div class="text-3xl h-[2.4rem] text-ellipsis truncate">${SubjectName}</div>
                 <div class="h-[64%] p-2">
@@ -150,7 +150,7 @@ function getCookie(name) {
 function setSubjectIdCookie(subjectCode) {
 
     const expirationDate = new Date();
-    expirationDate.setSeconds(expirationDate.getSeconds() + 5);
+    expirationDate.setMinutes(expirationDate.getMinutes() + 20);
 
     const cookieString = `subjectCode=${subjectCode}; expires=${expirationDate.toUTCString()}; path=/`;
 
