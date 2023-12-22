@@ -1,12 +1,13 @@
 const contentTable = document.getElementById("contentTable")
 
 const subjectCode = getCookie('subjectCode');
+const SubjectName = getCookie("subjectName")
 document.addEventListener('DOMContentLoaded', function () {
 
     const semesterId = getCookie('semesterId');
     const semesteriddiv = document.getElementById("semesterId")
     const semesterItem = document.createElement("p")
-    semesterItem.innerHTML = `<p class="text-4xl">Semester ${semesterId}</p>`
+    semesterItem.innerHTML = `<p class="text-4xl">Semester ${semesterId} <span>${SubjectName}</span></p>`
     semesteriddiv.appendChild(semesterItem)
 
     const selectedSemester = chapterName.find((sem) => sem.semesterId == semesterId)

@@ -100,6 +100,7 @@ function subNameRender(semesterId) {
     const selectedSemester = subjects.find((sem) => sem.id == semesterId)
     if (selectedSemester) {
         selectedSemester.semSubs.forEach((subjects) => {
+            // console.log(subjects.subjectCode)
             subjects.SubjectName.forEach((SubjectName,index) => {
                 const listItem = document.createElement("div")
                 let chapterHTML = ''
@@ -115,7 +116,7 @@ function subNameRender(semesterId) {
                 </div>
                 <hr>
                 <div class="flex justify-end">
-                <a id="syllabusBtn" href="syllabus.html" class="mt-2 bg-slate-200 rounded-sm p-1 w-24" onclick="setSubjectIdCookie('${subjectCode}')">Syllabus -></a>
+                <a id="syllabusBtn" href="syllabus.html" class="mt-2 bg-slate-200 rounded-sm p-1 w-24" onclick="setSubjectIdCookie('${subjectCode}','${subjectName}')">Syllabus -></a>
                 </div>
                 </div>`
                 subjectDiv.appendChild(listItem)
@@ -147,12 +148,16 @@ function getCookie(name) {
 }
 
 
-function setSubjectIdCookie(subjectCode) {
+function setSubjectIdCookie(subjectCode,subjectName) {
 
     const expirationDate = new Date();
     expirationDate.setMinutes(expirationDate.getMinutes() + 20);
 
-    const cookieString = `subjectCode=${subjectCode}; expires=${expirationDate.toUTCString()}; path=/`;
+    const cookieSubCode = `${subjectCode}`
+    const cookieCodeString = `subjectCode=${cookieSubCode}; expires=${expirationDate.toUTCString()}; path=/`;
+    const cookieSubName = `${subjectName}`
+    const cookieNameString = `subjectName=${cookieSubName}; expires=${expirationDate.toUTCString()}; path=/`;
 
-    document.cookie = cookieString;
+    document.cookie = cookieCodeString;
+    document.cookie = cookieNameString;
 }
