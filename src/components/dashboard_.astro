@@ -1,12 +1,23 @@
 ---
-// import Calendar from "../scripts/calander";
+import '../css/calander/fullCalander.css';
+
+
 ---
-<div class="mainBox w-full  h-[100vh] flex flex-col">
+
+<script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.4/moment-with-locales.min.js" integrity="sha512-42PE0rd+wZ2hNXftlM78BSehIGzezNeQuzihiBCvUEB3CVxHvsShF86wBWwQORNxNINlBPuq7rG4WWhNiTVHFg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script> -->
+<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.min.js"></script> -->
+<script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.10/index.global.min.js"></script>
+
+
+
+<div class="mainBox w-full  h-[100vh] flex flex-col bg-gray-100">
 
     <!-- small boxes -->
     <div class="small-boxes grid grid-cols-2 lg:grid-cols-4 w-[100%] gap-4 justify-center items-center p-2 px-10 py-10 h-fit pt-12">
 
-        <div class="small-box shadow-md bg-center bg-cover flex flex-col h-fit  hover:shadow-xl transition-all ease-in-out duration-300  rounded-md w-full bg-blue-400">
+        <div class="small-box shadow-md bg-center bg-cover flex flex-col h-fit  hover:shadow-xl transition-all ease-in-out duration-300  rounded-md w-full bg-blue-200">
             <div class="details flex  w-full m-2 rounded-sm p-2 text-lg ">Total students</div>
             <div class="icon-and-count flex justify-between px-10 ">
                 <i class="fa-regular fa-user text-[2rem] flex items-center "></i>
@@ -15,7 +26,7 @@
                 </div>
             </div>
         </div>
-        <div class="small-box shadow-md bg-center bg-cover flex flex-col h-fit  hover:shadow-xl transition-all ease-in-out duration-300 rounded-md w-full bg-blue-400">
+        <div class="small-box shadow-md bg-center bg-cover flex flex-col h-fit  hover:shadow-xl transition-all ease-in-out duration-300 rounded-md w-full bg-green-200">
             <div class="details flex  w-full m-2 rounded-sm p-2 text-lg ">Total students</div>
             <div class="icon-and-count flex justify-between px-10 ">
                 <i class="fa-regular fa-user text-[2rem] flex items-center "></i>
@@ -24,7 +35,7 @@
                 </div>
             </div>
         </div>
-        <div class="small-box shadow-md bg-center bg-cover flex flex-col h-fit hover:shadow-xl transition-all ease-in-out duration-300  rounded-md w-full bg-blue-400">
+        <div class="small-box shadow-md bg-center bg-cover flex flex-col h-fit hover:shadow-xl transition-all ease-in-out duration-300  rounded-md w-full bg-orange-200">
             <div class="details flex  w-full m-2 rounded-sm p-2 text-lg ">Total students</div>
             <div class="icon-and-count flex justify-between px-10 ">
                 <i class="fa-regular fa-user text-[2rem] flex items-center "></i>
@@ -33,7 +44,7 @@
                 </div>
             </div>
         </div>
-        <div class="small-box shadow-md bg-center bg-cover flex flex-col h-fit hover:shadow-xl transition-all ease-in-out duration-300  rounded-md w-full bg-blue-400">
+        <div class="small-box shadow-md bg-center bg-cover flex flex-col h-fit hover:shadow-xl transition-all ease-in-out duration-300  rounded-md w-full bg-red-200">
             <div class="details flex  w-full m-2 rounded-sm p-2 text-lg ">Total students</div>
             <div class="icon-and-count flex justify-between px-10 ">
                 <i class="fa-regular fa-user text-[2rem] flex items-center "></i>
@@ -45,7 +56,7 @@
         
     </div>
     <div class="large-boxes flex flex-col md:flex-row px-8 justify-between">
-        <div class="notices  shadow-lg  m-2 rounded-md  border   w-full h-full bg-gray-50 hover:shadow-xl transition-all ease-in-out duration-300">
+        <div class="notices  shadow-lg  m-2 rounded-md  border   w-full h-full bg-white hover:shadow-xl transition-all ease-in-out duration-300">
             <div class="flex text-lg p-4 ">Notices</div>
             <div class="flex pl-5 pr-10 justify-between">
                 <div class="w-[25%]">Title</div>
@@ -61,18 +72,42 @@
             <!-- <calendar/> -->
         </div>
     </div>
-    <div id="noticeViewModal" class="hidden transition-opacity ease-in-out duration-1000 absolute w-full h-full z-20 bg-[rgba(116,116,116,0.5)]">
-        <div class=" flex relative  z-20 rounded-md flex-col bg-white shadow-lg p-3 ml-[25%] mt-[10%]  w-[50%]">
+    <div id="noticeViewModal" class="transition-all ease-in-out absolute w-full h-full z-20 bg-[rgba(148,148,148,0.14)] -top-[100vh]">
+        <div class=" flex relative  z-20 rounded-md flex-col bg-white shadow-lg p-3 ml-[15%] mt-[10%]  w-[50%]">
             <div class="font-bold pb-5">Notice</div>
             <hr class=" border-gray-300 border-1  w-full  mb-3">
     
             <div class="flex font-bold text-lg pb-5" id="noticeModalHeader">Header</div>
             <div class="flex" id="noticeModalDes"> description</div>
-            <div id="noticeViewModalCloseBtn" class="absolute  -right-2 -top-2 bg-[rgb(255,103,43)] rounded-full h-6 w-6 flex justify-center items-center cursor-pointer hover:bg-red-500">
+            <div id="noticeViewModalCloseBtn" class="absolute  -right-2 -top-2 text-white bg-[rgb(255,103,43)] rounded-full h-6 w-6 flex justify-center items-center cursor-pointer hover:bg-red-500">
                 <i class="fa-solid fa-xmark"></i>
             </div>
         </div>
        </div>
 </div>
 <script src="../scripts/renderer/noticeRenderer.js"></script>
+
+<script type="module">
+
+import { $ } from 'https://code.jquery.com/jquery-3.7.1.js';
+
+    $(document).ready(() => {
+        $('#calendar').fullCalendar({
+            events: [
+                {
+                    title: 'Event 1',
+                    start: '2023-12-12',
+                },
+                {
+                    title: 'Event 2',
+                    start: '2023-12-15',
+                    end: '2023-12-19',
+                },
+                // Add more events as needed
+            ],
+        });
+    });
+</script>
+
+
 

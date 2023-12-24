@@ -16,13 +16,13 @@ fetch("http://localhost:3000/getAssignments", {
 			return console.log("Bad response");
 		} else return response.json();
 	})
-	.then((data) => {
+	.then((resData) => {
 		// console.log(data);
 
-		data.forEach((item) => {
+		resData.data.forEach((item) => {
 			assignments.push(item);
 			const newAss = document.createElement("div");
-			newAss.innerHTML = `<div class="flex rounded-lg w-full md:w-[80%] xl:w-[50%] bg-gray-100 shadow-md justify-between ass-list-item hover:shadow-2xl transition duration-300" data-id=${item.id}>
+			newAss.innerHTML = `<div class="flex rounded-lg w-full  bg-gray-100 shadow-md justify-between ass-list-item hover:shadow-2xl transition duration-300" data-id=${item.id}>
 			<div class="header-and-des flex flex-col">
 				<div class="header font-bold text-xl p-2" >${item.header}</div>
 				<div class="desc p-2" >${item.description}</div>

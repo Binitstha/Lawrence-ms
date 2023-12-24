@@ -1,15 +1,15 @@
 
-<div class="mainBox w-full  h-full flex flex-col px-10">
+<div class="mainBox w-full  h-[91vh] flex flex-col px-10 bg-gray-100">
     <div class="flex flex-col">
-        <div class="flex text-xl font-bold  pt-5  md:ml-0">Attendance</div>
+        <div class=" font-bold p-5 text-2xl text-center w-full"><span class="border-b-[3px] py-2 border-blue-500">Attendance</span></div>
         <div class="date-and-semester flex justify-between w-fit gap-5 text-lg m-5 mt-9 relative">
             <div
-                class="date rounded-lg bg-white shadow-md hover:shadow-xl transition-all ease-in-out  px-3  flex justify-center items-center">
+                class="date rounded-lg bg-white border-2 border-blue-300 text-sm shadow-md hover:shadow-xl transition-all ease-in-out  px-3  flex justify-center items-center">
                 2020/20/20 <span
-                    class="absolute rounded-full px-3 bg-blue-300 text-sm -left-3 -top-3">Date</span> </div>
+                    class="absolute rounded-md px-3 bg-blue-300 text-sm -left-3 -top-3">Date</span> </div>
             <div class=" rounded-md relative">
                 <select
-                    class="semester cursor-pointer bg-white shadow-md hover:shadow-xl transition-all ease-in-out  flex rounded-md py-2 px-2 text-center justify-center items-center :select outline-none "
+                    class="semester cursor-pointer bg-white border-2 border-blue-300 text-sm shadow-md hover:shadow-xl transition-all ease-in-out  flex rounded-md py-2 px-2 text-center justify-center items-center :select outline-none "
                     id="">
                     <option value="1">Semester 1</option>
                     <option value="2">Semester 2</option>
@@ -22,14 +22,14 @@
                     <option value="8">Semester 8</option>
 
                 </select>
-                <span class="absolute rounded-full px-3 bg-blue-300 text-sm -left-3 -top-3">Semester</span>
+                <span class="absolute rounded-md px-3 bg-blue-300 text-sm -left-3 -top-3">Semester</span>
             </div>
         </div>
 
 
-        <div class="flex">
+        <div class="flex pl-5">
             <div class="attandence-sheet rounded-lg shadow-lg bg-white  mt-3 p-2 w-[90%] md:w-[60%]">
-                <div class="shhet-top-bar font-bold text-2xl">
+                <div class="sheet-top-bar font-bold text-xl">
                     Students
                 </div>
                 <!-- students list -->
@@ -43,8 +43,8 @@
 
         </div>
     </div>
-    <div class="save-changes  mt-3 ">
-        <button class="save-changes-btn shadow-md hover:shadow-xl bg-white px-4 py-1 rounded-lg  "
+    <div class="save-changes  mt-3 pl-5">
+        <button class="save-changes-btn shadow-md hover:shadow-xl bg-transparent border-2 border-blue-300 hover:bg-blue-300 transition-all ease-in-out px-4 py-1 rounded-lg  "
             type="submit" id="submitBtn">Save Changes</button>
     </div>
 </div>

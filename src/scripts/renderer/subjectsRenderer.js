@@ -99,14 +99,14 @@ function subNameRender(semesterId) {
                 subjects.ChapterName.forEach((ChapterName) => {
                     chapterHTML += `<p class="text-sm">${ChapterName}</p>`
                 })
-                listItem.innerHTML = `<div class="p-2 rounded-md cursor-pointer bg-blue-400  hover:scale-[1.03] transition-all ease-in-out shadow-xl box2 w-[17rem] h-[15rem]">
+                listItem.innerHTML = `<div class="p-2 rounded-md cursor-pointer bg-blue-200  hover:scale-[1.03] transition-all ease-in-out shadow-xl box2 w-[17rem] h-[15rem]">
                                           <div class="text-3xl h-[2.4rem] text-ellipsis truncate">${SubjectName}</div>
                                           <div class="h-[64%] p-2">
                                             ${chapterHTML}
                                           </div>
                                           <hr>
                                           <div class="flex justify-end">
-                                          <a href="subject.html" class="mt-2 bg-slate-200 rounded-sm p-1 w-24">Syllabus -></a>
+                                          <a href="subject.html" class="mt-2 bg-slate-200 rounded-sm p-1 px-3">Syllabus</a>
                                           </div>
                                           </div>`
 

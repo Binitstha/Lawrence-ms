@@ -1,0 +1,46 @@
+
+<div id="loginModel">
+    <span id="loginModelText">Logged In</span>
+  </div>
+  <div class="main">
+
+    <div class="container">
+
+      <h3 style="font-size: 2em">Welcome Back</h3>
+      Please login your account
+      <label for="email">Email *</label>
+      <input type="email" placeholder="Enter your email" id="email" required />
+
+      <div class="passDiv">
+        <label for="password">Password *</label>
+        <input type="password" placeholder="Enter your password" id="password" required />
+        <i class="fa-regular fa-eye-slash eyeIc" id="eyeIcon"></i>
+      </div>
+
+      <div class="remember">
+        <div>
+          <input type="checkbox" id="rememberCheckBox" />
+          <label for="rememberCheckBox">Remember me</label>
+        </div>
+        <a href="#" style="
+              display: flex;
+              font-size: 0.7em;
+              justify-content: center;
+              align-items: center;
+            ">Forget password
+        </a>
+      </div>
+      <button class="loginBtn" id="loginBtn" type="submit" >
+        Login
+      </button>
+      <span class="registerSpan">
+        <p>Don't have an account?</p>
+        <a href="register.html">Register here</a>
+      </span>
+    </div>
+  </div>
+  <script src="../../scripts/login/signIn.js"></script>
+  <script src="../../scripts/login/script.js"></script>
+
+
+

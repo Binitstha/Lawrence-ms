@@ -6,9 +6,9 @@ fetch('http://localhost:3000/getAttendance',{method:'GET'})
         console.log("Response Error");
     }
     return response.json();
-}).then((data)=>{
+}).then((resData)=>{
     const attSheet=document.getElementById('attandence');
-    data.forEach((student)=>{
+    resData.data.forEach((student)=>{
     const listItem=document.createElement('li');
     listItem.innerHTML=`<div class="st-name ">${student.userName}</div>
     <input type="checkbox" class="st-status rounded-full checkBoxes ml-5" data-userName='${student.userName}' data-email='${student.email}' ></input> `;

@@ -52,14 +52,14 @@ semesters.forEach((e) => {
         subjectHTML += `<p class="text-[.9rem]">${el}</p>`
     })
 
-    listItem.innerHTML = `<div class="p-2 rounded-md  bg-blue-400 shadow-lg  hover:scale-[1.03] transition-all ease-in-out  box1 w-[17rem] h-[15rem]">
+    listItem.innerHTML = `<div class="p-2 rounded-md  bg-blue-200 shadow-lg  hover:scale-[1.03] transition-all ease-in-out  box1 w-[17rem] h-[15rem]">
     <div class="text-3xl">SEMESTER ${e.id}</div>
         <div class="h-[64%] p-2">
         ${subjectHTML}
         </div>
         <hr>
         <div class="flex justify-end">
-            <a id="subjectBtn" href="/subjectPage" class="mt-2 subjectBtn bg-slate-200 hover:bg-blue-500 transition-all ease-in-out shadow-md rounded-sm p-1 px-4" data-id="${e.id}">Subjects</a>
+            <a id="subjectBtn" href="/semesters/subjectPage" class="mt-2 subjectBtn bg-slate-200 hover:bg-blue-500 transition-all ease-in-out shadow-md rounded-sm p-1 px-4" data-id="${e.id}">Subjects</a>
         </div>
         </div>`
     semesterDiv.appendChild(listItem)

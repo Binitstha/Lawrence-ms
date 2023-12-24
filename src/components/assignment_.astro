@@ -1,0 +1,54 @@
+
+
+
+
+<div class="mainBox w-full md:full  h-[91vh] flex flex-col bg-gray-100">
+    <div class=" font-bold p-5 text-2xl text-center w-full"><span class="border-b-[3px] py-2 border-blue-500">Assignments</span></div>
+    <div class="optionsBar flex  flex-col w-full ">
+        <div class="semester flex  md:ml-0 rounded-lg pl-10 gap-5 ">
+            <select class="semester cursor-pointer bg-white border-2  border-blue-300 text-sm shadow-md hover:shadow-xl transition-all ease-in-out  flex rounded-md  px-2 text-center justify-center items-center " id="">
+                    <option value="1">Semester 1</option>
+                    <option value="2">Semester 2</option>
+                    <option value="3">Semester 3</option>
+                    <option value="4">Semester 4</option>
+
+                    <option value="5">Semester 5</option>
+                    <option value="6">Semester 6</option>
+                    <option value="7">Semester 7</option>
+                    <option value="8">Semester 8</option>
+
+                </select>
+            <a href=""><div class="createAssignment px-3 py-2 bg-blue-300 border-2 border-blue-300 h-fit text-sm  hover:text-white  rounded-lg hover:bg-blue-500 transition-all ease-in-out hover:border-blue-500">Create</div></a>
+        </div>
+        <div class="assignment-list flex p-3 flex-col gap-5 w-[50%] ml-10 mt-10 rounded-md shadow-lg bg-blue-200 " id="assignment-list">
+
+            
+            
+        </div>
+    </div>
+
+    <!-- assignemnt view model -->
+
+    <div id="assignment-view-modal" class=" justify-center items-center transition-all ease-in-out duration-500  absolute top-[-100vh] w-[80%] ">
+        <div class="assignment-container w-[50%] h-[50%] ml-[15%] mt-[10%]  bg-white rounded-lg shadow-lg">
+            <div class="header flex justify-between">
+                <span class="p-2 font-bold">Assignment</span>
+                <div id="ass-model-close-btn" class="flex justify-center items-center px-2 py-1 hover:bg-blue-300 transition-all ease-in-out  cursor-pointer">X</div>
+            </div>
+            <div class="ass-body m-2 p-2 bg-blue-200 rounded-sm">
+                <div class="ass-header text-3xl font-bold pb-4" id="assignmentHeader">
+                    Assignment header
+                </div>
+                <div class="ass-desc h-56 overflow-y-scroll" id="assignmentDescription">
+                    Assignment description
+                </div>
+            </div>
+            <div class="dates flex justify-between p-2">
+                <div>Assigned date: <span id="assignmentAssignedDate">2020/20/20</span></div>
+                <div>Due date: <span id="assignmentDueDate">2020/20/20</span></div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="../scripts/renderer/assignment/assignmentRenderer.js"></script>
+<script src="../scripts/renderer/assignment/assignmentModelController.js"></script>

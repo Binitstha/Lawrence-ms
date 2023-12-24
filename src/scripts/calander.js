@@ -1,16 +1,20 @@
-// import { Calendar } from "fullcalendar/index.js";
-// import dayGridPlugin from '@fullcalendar/daygrid';
-// import timeGridPlugin from '@fullcalendar/timegrid';
-// import listPlugin from '@fullcalendar/list';
+import $ from 'jquery';
+import 'moment';
+import 'fullcalendar';
 
-// let calendar = new Calendar(calendarEl, {
-//   plugins: [ dayGridPlugin, timeGridPlugin, listPlugin ],
-//   initialView: 'dayGridMonth',
-//   headerToolbar: {
-//     left: 'prev,next today',
-//     center: 'title',
-//     right: 'dayGridMonth,timeGridWeek,listWeek'
-//   }
-// });
-// export default calendar;
- 
+$(document).ready(() => {
+  $('#calendar').fullCalendar({
+    events: [
+      {
+        title: 'Event 1',
+        start: '2023-12-12',
+      },
+      {
+        title: 'Event 2',
+        start: '2023-12-15',
+        end: '2023-12-19',
+      },
+      // Add more events as needed
+    ],
+  });
+});

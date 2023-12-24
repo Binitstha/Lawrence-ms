@@ -13,6 +13,8 @@
     "@astrojs/tailwind": "^5.0.3",
     "astro": "^4.0.6",
     "fullcalendar": "^6.1.10",
+    "jquery": "^3.7.1",
+    "moment": "^2.29.4",
     "tailwindcss": "^3.3.6"
   },
   "devDependencies": {

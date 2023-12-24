@@ -9,11 +9,11 @@ fetch('http://localhost:3000/getNotices',{
         console.log("Response error");
     }
     return response.json();
-}).then((data)=>{
+}).then((responseData)=>{
   
-    
+
     const noticeContainer=document.getElementById('noticeContainer');
-    data.forEach((notice)=>{
+    responseData.data.forEach((notice)=>{
         notices.push(notice);
         const item=document.createElement('div');
         item.innerHTML=`<div class="noticeItem flex  px-5 pb-2 items-center w-full"  >
@@ -52,10 +52,10 @@ const assignNoticeListeners = () => {
 	});
 
 	const displayNoticeViewModal = () => {
-		noticeViewModal.classList.remove("hidden");
+		noticeViewModal.classList.remove("-top-[100vh]");
 	};
 	noticeViewCloseBtn.addEventListener("click", () => {
-		noticeViewModal.classList.add("hidden");
+		noticeViewModal.classList.add("-top-[100vh]");
 	});
     return
 };
