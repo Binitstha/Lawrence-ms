@@ -4,12 +4,12 @@ submitBtn.addEventListener('click',()=>{
     const checkBoxes=document.querySelectorAll('input[type="checkbox"]');
     console.log(Array.from(checkBoxes));
     const stAtt=Array.from(checkBoxes).map((checkBox)=>{
-        let email=checkBox.getAttribute('data-email');
+        let id=checkBox.getAttribute('data-id');
         let present=checkBox.checked;
-        return {email,present};
+        return {id,present};
     });
     
-    fetch('http://localhost:3000/setAttendance',{
+    fetch('http://localhost:3000/api/attendance/setAttendance',{
         method:'POST',
         headers:{
             'content-type':'application/json',
