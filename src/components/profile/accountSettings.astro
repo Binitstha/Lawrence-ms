@@ -1,0 +1,97 @@
+---
+import ProfileLayout from "./profileLayout.astro";
+---
+<ProfileLayout>
+    <div class="flex flex-col w-full">
+        <div class="text-xl font-bold">Settings</div>
+        <div class="flex mt-10 w-full">
+            <div class=" w-fit">
+                <div class="photo flex flex-col gap-5">
+                    <img src="../../../assets/demo.jpg" width="200px" alt="">
+                    <a href="" class="border-2 border-blue-500 hover:bg-blue-500 hover:text-white transition-all ease-in-out rounded-md px-2 text-center ">Change Photo</a>
+                </div>
+            </div>
+            <div class=" w-full flex ">
+                <!-- name -->
+                <div class="label flex flex-col  pl-10 w-full">
+                    <div class="flex flex-col">
+                        <span class="font-[500] text-xl">Display Name</span>
+                        <span id="asName" class="text-md pl-2 text-gray-700 py-2">
+                            Sachet Subedi
+            
+                        </span>
+                    </div>
+                   <hr class="border-gray-400">
+                   <br>
+
+                   <!-- email -->
+                    <div class="flex flex-col w-full">
+                        <span class="font-[500] text-xl">Email Addresses</span>
+                        <span class="text-sm font-[500]">Select or Add new email address to recive notifications.</span> 
+                        <div class="mt-5 flex w-full justify-between pr-10">
+                            <div class="emails text-sm font-[500] w-full  ">
+                                <div class="w-full flex justify-between text-lg">
+                                    <span class="pl-5">Email Address</span>
+                                    <span class="pr-[42%]">Status</span>
+                                </div>
+                                <hr class="border-[1px] border-gray-300">
+
+                                <div id="emailList" class="w-full ">
+                                    <div id="emailItem" class="flex justify-between text-lg text-gray-600">
+                                        <span class="pl-5" id="asEmail">Sachetsubedi001@gmail.com</span>
+                                        <span class="pr-[40%]">Verified</span>
+                                    </div>
+                                </div>
+                                <div class="pt-5 pl-5">
+                                    <a href="" class="border-2 border-blue-400 px-2 py-1 rounded-md cursor-pointer hover:bg-blue-400 transition-all ease-in-out hover:text-white">Add email address</a>
+                                </div>
+                            </div>
+                            
+                        </div>
+                    </div>
+                    <!-- contact number -->
+                    <div class="flex flex-col w-full py-10">
+                        <hr class="border-1 border-gray-500 py-5">
+                        <span class="font-[500] text-xl" >Contact Number</span>
+                        <span class="text-sm font-[500]">Select or Add new Contact number to recive notifications.</span> 
+                        <div class="mt-5 flex w-full justify-between pr-10">
+                            <div class="contacts text-sm font-[500] w-full  ">
+                                <div class="w-full flex justify-between text-lg">
+                                    <span class="pl-5">Contact Number</span>
+                                    <span class="pr-[42%]">Status</span>
+                                </div>
+                                <hr class="border-1 border-gray-500">
+
+                                <div id="contactList" class="w-full ">
+                                    <div id="contactItem" class="flex justify-between text-lg text-gray-600">
+                                        <span class="pl-5" id="asContactNumber">9863028085</span>
+                                        <span class="pr-[40%]">Verified</span>
+                                    </div>
+                                </div>
+                                <div class="pt-5 pl-5">
+                                    <a href="" class="border-2 border-blue-400 px-2 py-1 rounded-md cursor-pointer hover:bg-blue-400 transition-all ease-in-out hover:text-white">Add Contact number</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</ProfileLayout>
+
+<script is:inline type="module">
+    // import Cookies from 'js-cookie';
+    // import {jwtDecode} from 'jwt-decode';
+    const name=document.getElementById('asName');
+    const email=document.getElementById('asEmail');
+    const contactNumber=document.getElementById('asContactNumber');
+    
+    // const userData=JSON.parse(JSON.stringify(jwtDecode(Cookies.get('userData'))));
+    const userData=JSON.parse(localStorage.getItem('user-details'));
+
+    name.innerHTML=userData.name;
+    email.innerHTML=userData.email;
+    contactNumber.innerHTML=userData.contact;
+
+</script>

@@ -1,0 +1,88 @@
+---
+
+---
+
+<div
+  id="sidebar"
+  class="sidebar h-[90vh] overflow-hidden w-[30vh] z-10 bg-white absolute -left-64 xl:static transition-all ease-in-out shadow-2xl"
+>
+  <br />
+  <span class="font-bold text-lg pl-3 pt-3">Menu</span>
+  <ul class="flex sidePanel-list flex-col pt-5 gap-1 w-full text-sm">
+    <a class="side-nav-buttons" href="/admin/dashboard">
+      <li
+        class="text-start text-gray-700 w-full py-1 px-5 hover:text-blue-600 hover:bg-gray-200 hover:shadow-sm transition duration-300 items-center"
+      >
+        <i class="fa-solid w-7 fa-house"></i> Dashboard
+      </li>
+    </a>
+    <a class="side-nav-buttons" href="/semesters/semesterPage">
+      <li
+        class="text-start text-gray-700 w-full py-1 px-5 hover:text-blue-600 hover:bg-gray-200 hover:shadow-sm transition duration-300 items-center"
+      >
+        <i class="fa-solid w-7 fa-graduation-cap"></i> Semesters
+      </li>
+    </a>
+
+    <a class="side-nav-buttons" href="/admin/students">
+      <li
+        class="text-start text-gray-700 w-full py-1 px-5 hover:text-blue-600 hover:bg-gray-200 hover:shadow-sm transition duration-300 items-center"
+      >
+        <i class="fa-solid w-7 fa-user"></i> Students
+      </li>
+    </a>
+    <a class="side-nav-buttons" href="/attendancePage">
+      <li
+        class="text-start text-gray-700 w-full py-1 px-5 hover:text-blue-600 hover:bg-gray-200 hover:shadow-sm transition duration-300 items-center"
+      >
+        <i class="fa-solid w-7 fa-clipboard-user"></i> Attendence
+      </li>
+    </a>
+    <a class="side-nav-buttons" href="/assignment">
+      <li
+        class="text-start text-gray-700 w-full py-1 px-5 hover:text-blue-600 hover:bg-gray-200 hover:shadow-sm transition duration-300 items-center"
+      >
+        <i class="fa-solid w-7 fa-pen"></i> Assignments
+      </li>
+    </a>
+    <a class="side-nav-buttons" href="">
+      <li
+        class="text-start text-gray-700 w-full py-1 px-5 hover:text-blue-600 hover:bg-gray-200 hover:shadow-sm transition duration-300 items-center"
+      >
+        <i class="fa-solid w-7 fa-computer"></i> Labworks
+      </li>
+    </a>
+    <a class="side-nav-buttons" href="">
+      <li
+        class="text-start text-gray-700 w-full py-1 px-5 hover:text-blue-600 hover:bg-gray-200 hover:shadow-sm transition duration-300 items-center"
+      >
+        <i class="fa-solid w-7 fa-clipboard-question"></i> Question Papers
+      </li>
+    </a>
+  </ul>
+</div>
+<div
+  id="menuBtn"
+  class="z-20 sidebarBtn absolute left-2 mt-4 p-3 cursor-pointer border-2 bg-white hover:bg-blue-300 transition-all ease-in-out xl:hidden border-blue-300 rounded-full"
+>
+  <i
+    class="fa-solid fa-bars h-3 w-3 flex items-center justify-center"
+    id="menuIcon"></i>
+</div>
+
+<script  >
+  const sideBtns = document.querySelectorAll(".side-nav-buttons");
+  sideBtns.forEach((btn) => {
+    const currLocation = btn.getAttribute("href");
+    // console.log(window.location.href);
+    if (currLocation == window.location.pathname) {
+      btn.classList.add("border-l-8");
+      btn.classList.add("border-blue-500");
+      return btn.classList.add("bg-blue-100");
+    }
+
+    btn.classList.remove("border-l-8");
+    btn.classList.remove("border-blue-500");
+    return btn.classList.remove("bg-blue-100");
+  });
+</script>

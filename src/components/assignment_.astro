@@ -1,0 +1,166 @@
+<div
+  id="deleteConfirmation"
+  class="rounded-b-md z-10 right-[42rem] top-[-100vh] border-0 absolute bg-green-400 p-3"
+>
+  &checkmark; Assignment deleted
+</div>
+<div
+  id="confirmationBox"
+  class="rounded-b-md top-[-100vh] z-10 right-[42rem] border-0 absolute bg-green-400 p-3"
+>
+  &checkmark; Assignment Added
+</div>
+<div
+  id="errorBox"
+  class="rounded-b-md top-[-100vh] z-10 right-[42rem] border-0 absolute bg-red-600 p-3"
+>
+  &cross; Assignment already exist
+</div>
+<div
+  id="serverErrorBox"
+  class="rounded-b-md z-10 right-[42rem] top-[-100vh] border-0 absolute bg-red-300 p-3"
+>
+  &cross; Internal server error
+</div>
+
+<div class="mainBox w-full md:full h-[91vh] flex flex-col bg-gray-100">
+  <div class="font-bold p-5 text-2xl text-center w-full">
+    <span class="border-b-[3px] py-2 border-blue-500">Assignments</span>
+  </div>
+  <div class="optionsBar flex flex-col w-full">
+    <div class="semester flex md:ml-0 rounded-lg pl-10 gap-5">
+      <select
+        class="semester px-3 py-2 cursor-pointer w-fit bg-white border-2 border-blue-300 text-sm shadow-md hover:shadow-xl transition-all ease-in-out flex rounded-md text-center justify-center items-center"
+        id="semesterSelect">
+        <option class=" text-start text" value="1"> Semester 1</option>
+        <option class=" text-start text" value="2"> Semester 2</option>
+        <option class=" text-start text" value="3"> Semester 3</option>
+        <option class=" text-start text" value="4"> Semester 4</option>
+        <option class=" text-start text" value="5"> Semester 5</option>
+        <option class=" text-start text" value="6"> Semester 6</option>
+        <option class=" text-start text" value="7"> Semester 7</option>
+        <option class=" text-start text" value="8"> Semester 8</option>
+      </select>
+      <!-- <button
+        id="addAssignment"
+        class="createAssignment px-3 py-2 bg-blue-300 border-2 border-blue-300 h-fit text-sm hover:text-white rounded-lg hover:bg-blue-500 transition-all ease-in-out hover:border-blue-500">
+        Create
+      </button> -->
+    </div>
+    <div
+      class="assignment-list w-[60%] flex p-3 flex-col gap-5 ml-10 mt-10 rounded-md shadow-lg bg-blue-200"
+      id="assignmentListDiv"
+    >
+    </div>
+  </div>
+
+  <!-- assignemnt view model -->
+
+  <div
+    id="assignmentViewModal"
+    class="justify-center items-center transition-all ease-in-out duration-500 absolute top-[-100vh] w-[80%]"
+  >
+    <div
+      class="assignment-container w-[50%] h-[50%] ml-[15%] mt-[10%] bg-white rounded-lg shadow-lg"
+    >
+      <div class="header flex justify-between">
+        <span class="p-2 font-bold">Assignment</span>
+        <div
+          id="ass-model-close-btn"
+          class="flex justify-center items-center px-2 py-1 hover:bg-blue-300 transition-all ease-in-out cursor-pointer"
+        >
+          X
+        </div>
+      </div>
+      <div class="ass-body m-2 p-2 bg-blue-200 rounded-sm">
+        <div class="ass-header text-3xl font-bold pb-4 whitespace-pre-wrap" id="assignmentTitle">
+          hello
+        </div>
+        <div class="ass-desc h-56 overflow-y-scroll whitespace-pre-wrap" id="assignmentDesc"></div>
+      </div>
+      <div class="dates flex justify-between p-2">
+        <div>
+          <span id="assignmentAssignedDate"></span>
+        </div>
+        <div><span id="assignmentDueDate"></span></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- addAssignmentMdel -->
+<div
+  id="addAssignmentModal"
+  class="flex transition-all ease-in-out -top-[100vh] absolute w-[86.8%] bg-[rgba(219,219,219,0.8)] h-[100vh]"
+>
+  <div
+    class="container gap-1 relative flex flex-col w-[50%] mx-auto mt-10 h-fit rounded-md shadow-md bg-white p-5"
+  >
+    <div
+      class="mx-auto text-2xl font-bold w-fit border-b-2 border-blue-600 mb-10"
+    >
+      Add assignment
+    </div>
+    <div class="flex w-full justify-between">
+      <div class="grid gap-1">
+        <label for="semesterValue">Choose semester</label>
+        <select
+          class="w-28 semester cursor-pointer bg-white border-2 border-blue-300 text-sm shadow-md hover:shadow-xl transition-all ease-in-out flex rounded-md px-2 text-center justify-center items-center"
+          id="semesterValue"
+        >
+          <option value="1">Semester 1</option>
+          <option value="2">Semester 2</option>
+          <option value="3">Semester 3</option>
+          <option value="4">Semester 4</option>
+          <option value="5">Semester 5</option>
+          <option value="6">Semester 6</option>
+          <option value="7">Semester 7</option>
+          <option value="8">Semester 8</option>
+        </select>
+      </div>
+      <div class="grid gap-1">
+        <label class="font-bold">Due date</label>
+        <input
+          class="border-2 border-blue-500 rounded-md px-2"
+          type="date"
+          id="addAssignmentDate"
+          placeholder="DD/MM/YYYY"
+        />
+      </div>
+    </div>
+    <label class="font-bold">Title</label>
+    <input
+      class="border-2 border-blue-500 rounded-md px-2"
+      type="text"
+      id="addAssignmentTitle"
+      placeholder="Assignment title"
+      required
+    />
+    <label class="font-bold">Description</label>
+    <textarea
+      id="addAssignmentDesc"
+      cols="30"
+      rows="10"
+      class="border-2 border-blue-500 rounded-md resize-none px-2"
+      placeholder="Assignment Description"
+    >
+    </textarea>
+
+    <div class="flex justify-end mt-2">
+      <button
+        id="submitBtn"
+        class="w-fit border-2 border-blue-500 px-7 rounded-md hover:bg-blue-500 transition-all ease-in-out hover:text-white shadow-md"
+      >
+        Submit
+      </button>
+    </div>
+    <div
+      id="addAssignmentModalCloseBtn"
+      class="absolute -right-2 -top-2 text-white bg-[rgb(255,103,43)] rounded-full h-6 w-6 flex justify-center items-center cursor-pointer hover:bg-red-500"
+    >
+      <i class="fa-solid fa-xmark"></i>
+    </div>
+  </div>
+</div>
+<script src="../scripts/admin/assignment/assignmentModelController.js"  ></script>
+<script src="../scripts/admin/assignment/assignmentRenderer.js"  ></script>

@@ -1,0 +1,54 @@
+<div class="left-side w-[50%] flex">
+    <div class="photo">
+        <img src="../../../../assets/demo.jpg" height="200px" width="200px" class="bg-center bg-cover rounded-md" alt="user photo">
+    </div>
+    <div class="user-details flex">
+        <div class=" flex flex-col labels pl-10  py-2 font-bold">
+            <div class="border-b-2 border-gray-200 py-3" >Name</div>
+            <div class="border-b-2 border-gray-200 py-3" >Age</div>
+            <div class="border-b-2 border-gray-200 py-3">Position</div>
+            <div class="border-b-2 border-gray-200 py-3" >Email</div>
+            <div class="border-b-2 border-gray-200 py-3" >Address</div>
+            <div class="border-b-2 border-gray-200 py-3" >Phone </div>
+        </div>
+        <div class="values flex flex-col labels   py-2 text-gray-500">
+            <div class="border-b-2 border-gray-200 py-3 pl-10" id="name">Sachet Subedi</div>
+            <div class="border-b-2 border-gray-200 py-3 pl-10" id="age">20</div>
+            <div class="border-b-2 border-gray-200 py-3 pl-10 " id="position">Teacher</div>
+            <div class="border-b-2 border-gray-200 py-3 pl-10" id="email">sachetsubedi001@gmail.com</div>
+            <div class="border-b-2 border-gray-200 py-3 pl-10" id="address">Tokha</div>
+            <div class="border-b-2 border-gray-200 py-3 pl-10" id="contact">9860251616 </div>
+        </div>
+    </div>
+</div>
+<div class="right-side w-[50%]">
+    <div class="user-analytics flex">
+        <div class=" flex flex-col labels pl-10  py-2 font-bold">
+            
+            <div class="border-b-2 border-gray-200 py-3">Teaching semesters</div>
+            <div class="border-b-2 border-gray-200 py-3">Average attendance</div>
+            <div class="border-b-2 border-gray-200 py-3">Qualification</div>
+        </div>
+        <div class="values flex flex-col labels   py-2 text-gray-500">
+            <div class="border-b-2 border-gray-200 py-3 pl-10" id="teaching">5</div>
+            <div class="border-b-2 border-gray-200 py-3 pl-10" id="avAttendance">69%</div>
+            <div class="border-b-2 border-gray-200 py-3 pl-10" id="qualification">Masters</div>
+            
+        </div>
+    </div>
+
+</div>
+<script is:inline >
+    // import Cookies from 'js-cookie';
+    // import {jwtDecode} from 'jwt-decode';
+    // const userData=JSON.parse(JSON.stringify(jwtDecode(Cookies.get('userData'))));
+    const userData=JSON.parse(localStorage.getItem('user-details'));
+
+    document.getElementById('name').innerHTML=userData.name;
+    document.getElementById('email').innerHTML=userData.email;
+    document.getElementById('contact').innerHTML=userData.contact;
+    document.getElementById('age').innerHTML=userData.age;
+    document.getElementById('address').innerHTML=userData.address;
+    document.getElementById('position').innerHTML=userData.role;
+
+</script>

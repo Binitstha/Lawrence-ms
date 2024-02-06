@@ -1,0 +1,82 @@
+<div id="currentSem" class="font-bold p-5 text-2xl text-center w-full"></div>
+<div class="p-3 flex gap-5 justify-center mt-4">
+  <div id="subjectDiv" class="grid grid-cols-4 gap-7 place-content-center">
+  </div>
+</div>
+
+<script  >
+  import { chapterName } from "../../scripts/semester/semester";
+  import Subject from "../subject_.astro";
+  const subjectDiv = document.getElementById("subjectDiv");
+  const currentSem = document.getElementById("currentSem");
+
+  function subNameRender(semesterId) {
+    const selectedSemester = chapterName.find(
+      (sem) => sem.semesterId == semesterId
+    );
+    if (selectedSemester) {
+      currentSem.innerHTML = ` <span class="border-b-[3px] py-2 border-blue-500">Semesters ${semesterId}</span>`;
+      selectedSemester.subjects.forEach((subject) => {
+        const listItem = document.createElement("div");
+        let chapterHTML = "";
+        subject.chapters.forEach((e) => {
+          chapterHTML += `<p class="text-sm">${e}</p>`;
+        });
+        listItem.innerHTML = `<div class="p-2 rounded-md  bg-blue-200 shadow-lg  hover:scale-[1.03] transition-all ease-in-out  box1 w-[17rem] h-[15rem]">
+                                          <div class="text-3xl h-[2.4rem] text-ellipsis truncate">${subject.subjectName}</div>
+                                          <div class="overflow-hidden h-[64%] p-2">
+                                            <div class="line-clamp-6">
+                                              ${chapterHTML}
+                                              </div>
+                                          </div>
+                                          <hr>
+                                          <div class="flex justify-end">
+                                          <a href="/Questions/questions" class="questionBtn cursor-pointer mt-2 bg-slate-200 rounded-sm p-1 px-3" data-id="${subject.subjectId}">Questions &rarr;</a>
+                                          </div>
+                                          </div>`;
+
+        subjectDiv?.appendChild(listItem);
+      });
+    }
+  }
+
+  document.addEventListener("DOMContentLoaded", function () {
+    const semesterIdstring= getCookie("semesterId");
+    const semesterId = semesterIdstring
+      ? parseInt(semesterIdstring.toString(), 10)
+      : 0;
+    const semesteriddiv = document.getElementById("semesterId");
+    const semesterItem = document.createElement("p");
+    semesterItem.innerHTML = `<p class="text-3xl p-5">Semester ${semesterId}</p>`;
+    semesteriddiv?.appendChild(semesterItem);
+
+    subNameRender(semesterId);
+    
+    function getCookie(name) {
+      const cookies = document.cookie.split(";");
+      for (let i = 0; i < cookies.length; i++) {
+        const cookie = cookies[i].trim();
+        if (cookie.startsWith(name + "=")) {
+          return cookie.substring(name.length + 1);
+        }
+      }
+      return null;
+    }
+    function setSemesterIdCookie(subjectId) {
+      const expirationDate = new Date();
+      expirationDate.setHours(expirationDate.getHours() + 30);
+      
+      const cookieString = `subjectId=${subjectId}; expires=${expirationDate.toUTCString()}; path=/`;
+      
+      document.cookie = cookieString;
+    }
+    
+    const questionBtn = document.querySelectorAll(".questionBtn");
+    questionBtn.forEach((btn) => {
+      btn.addEventListener("click", function () {
+        const id = this.getAttribute("data-id");
+        setSemesterIdCookie(id);
+      });
+    });
+  });
+  </script>

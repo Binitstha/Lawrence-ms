@@ -1,0 +1,184 @@
+<div
+  id="confirmationBox"
+  class="rounded-b-md translate-x-[-47%] top-[-100vh] border-0 absolute bg-green-400 p-3"
+>
+  &checkmark; Question Added
+</div>
+<div
+  id="errorBox"
+  class="rounded-b-md translate-x-[-47%] top-[-100vh] border-0 absolute bg-red-600 p-3"
+>
+  &cross; Question already exist
+</div>
+<div
+  id="serverErrorBox"
+  class="rounded-b-md translate-x-[-47%] top-[-100vh] border-0 absolute bg-red-300 p-3"
+>
+  &cross; Internal server error
+</div>
+<div
+  id="addQuestionModel"
+  class="rounded-md absolute top-[-100vh] border-3 translate-x-[-17%] bg-white w-[30rem] shadow-lg h-fit"
+>
+  <section class="flex justify-between">
+    <div class="p-1 px-3">Add Questions</div>
+    <div
+      id="closeAddModel"
+      class="hover:bg-red-600 flex w-7 cursor-pointer rounded-tr-md justify-center items-center"
+    >
+      &cross;
+    </div>
+  </section>
+  <section class="p-2">
+    <hr />
+    <form
+      action="/questionEntry"
+      enctype="multipart/form-data"
+      method="put"
+      id="questionData"
+    >
+      <div class="p-3 gap-1 flex flex-col h-fit">
+        <p class="text-sm text-red-600">
+          This question will be added in this current semester for current
+          subject!
+        </p>
+        <label>Fill the boxes:</label>
+        <div class="flex flex-wrap gap-2">
+          <input
+            id="yearInput"
+            class="border-2 rounded-md p-1 w-[49.1%]"
+            type="text"
+            required
+            placeholder="Asked Year"
+          />
+          <input
+            id="markInput"
+            class="border-2 rounded-md p-1 w-[49%]"
+            type="text"
+            required
+            placeholder="mark"
+          />
+        </div>
+        <label for="questionInput">Enter the question</label>
+        <textarea
+          id="questionInput"
+          class="border-2 resize-none h-[10rem] w-full rounded-md p-1"
+          required
+          placeholder="Question ...."></textarea>
+        <label for="" class="flex gap-2"
+          >Insert Image<p class="text-red-600">(optional*)</p></label
+        >
+        <input id="imageInput" type="file" accept="image/*" class="w-fit" />
+      </div>
+      <div class="flex justify-end px-3">
+        <input
+          type="submit"
+          id="submitBtn"
+          value="Add"
+          class="border-2 rounded-md p-1 px-3"
+        />
+      </div>
+    </form>
+  </section>
+</div>
+
+<script   >
+  document.addEventListener("DOMContentLoaded", () => {
+    const addQuestionModel = document.getElementById("addQuestionModel");
+    const addQuestion = document.getElementById("addQuestion");
+
+    function getCookie() {
+      const cookies = document.cookie.split(";");
+      for (let i = 0; i < cookies.length; i++) {
+        const cookie = cookies[i].trim();
+        if (cookie.startsWith(name + "=")) {
+          return cookie.substring(name.length + 1);
+        }
+      }
+      return null;
+    }
+
+    addQuestion.addEventListener("click", () => {
+      question.value = "";
+      year.value = "";
+      mark.value = "";
+      imageInput.value = "";
+    });
+    const question = document.getElementById(
+      "questionInput") ;
+    const year = document.getElementById("yearInput") ;
+    const subCode = getCookie("subjectId");
+    let mark = document.getElementById("markInput") ;
+    let imageInput = document.getElementById("imageInput") ;
+    let semChoose = getCookie("semesterId");
+    const form = document.getElementById("questionData") ;
+    if (form) {
+      form.addEventListener("submit", (event) => {
+        event.preventDefault();
+        if (
+          question.value ||
+          year.value ||
+          subCode ||
+          mark.value ||
+          semChoose
+        ) {
+          console.log(imageInput.files[0]);
+          const formData = new FormData();
+
+          formData.append("question", question.value);
+          formData.append("year", year.value);
+          formData.append("semester", semChoose);
+          formData.append("subject_code", subCode);
+          formData.append("mark", mark.value);
+          formData.append("image", imageInput.files[0]);
+
+          console.log(formData);
+          fetch("http://localhost:3000/api/questions/questionEntry", {
+            method: "PUT",
+            body: formData,
+          })
+            .then((response) => {
+              if (response.ok) {
+                addQuestionModel.style.top = "-100vh";
+                addQuestionModel.style.transition = "ease-out .3s";
+                const confirmationBox =
+                  document.getElementById("confirmationBox");
+                addQuestionModel.style.transition = "ease-out .3s";
+                confirmationBox.style.transition = "ease-out .3s";
+                setTimeout(() => {
+                  confirmationBox.style.top = "-100vh";
+                }, 2500);
+                setTimeout(() => {
+                  addQuestionModel.style.top = "-100vh";
+                  confirmationBox.style.top = "0";
+                }, 500);
+                return response.json();
+              } else if (response.status == 400) {
+                const errorBox = document.getElementById("errorBox");
+                errorBox.style.transition = "ease-out .3s";
+                errorBox.style.top = "0";
+                setTimeout(() => {
+                  errorBox.style.top = "-100vh";
+                }, 2500);
+              } else {
+                const serverErrorBox =
+                  document.getElementById("serverErrorBox");
+                serverErrorBox.style.transition = "ease-out .3s";
+                serverErrorBox.style.top = "0";
+                setTimeout(() => {
+                  serverErrorBox.style.top = "-100vh";
+                }, 2500);
+              }
+            })
+            .then((data) => {
+              console.log("Data inserted");
+              return data;
+            })
+            .catch((err) => {
+              console.log(err);
+            });
+        }
+      });
+    }
+  });
+</script>

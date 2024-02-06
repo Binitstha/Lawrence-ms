@@ -1,0 +1,16 @@
+.fc-today{
+    background-color: rgb(99, 99, 255)!important;
+} 
+/* .fc-scroller{
+    height: 23rem!important;
+} */
+/* #calendar{
+    min-height: 300px!important;
+} */
+.fc-basic-view .fc-body .fc-row{
+    min-height: 10px!important;
+    height: 49px!important;
+}
+.fc-scroller,.fc-day-grid-container{
+    height: 18.5rem!important;
+}

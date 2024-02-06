@@ -1,0 +1,248 @@
+<div
+  id="deleteConfirmation"
+  class="rounded-b-md z-10 right-[42rem] top-[-100vh] border-0 absolute bg-green-400 p-3"
+>
+  &checkmark; Assignment deleted
+</div>
+<div
+  id="confirmationBox"
+  class="rounded-b-md top-[-100vh] z-10 right-[42rem] border-0 absolute bg-green-400 p-3"
+>
+  &checkmark; Assignment Added
+</div>
+<div
+  id="errorBox"
+  class="rounded-b-md top-[-100vh] z-10 right-[42rem] border-0 absolute bg-red-600 p-3"
+>
+  &cross; Assignment already exist
+</div>
+<div
+  id="serverErrorBox"
+  class="rounded-b-md z-10 right-[42rem] top-[-100vh] border-0 absolute bg-red-300 p-3"
+>
+  &cross; Internal server error
+</div>
+
+<div class="mainBox w-full md:full h-[91vh] flex flex-col bg-gray-100">
+  <div class="font-bold p-5 text-2xl text-center w-full">
+    <span class="border-b-[3px] py-2 border-blue-500">Assignments</span>
+  </div>
+  <div class="optionsBar flex flex-col w-full">
+    <div class="semester flex md:ml-0 rounded-lg pl-10 gap-5">
+      <div class="grid">
+        <select
+        class="semester bg-slate-50 cursor-pointer w-fit border-2 border-blue-300 text-sm shadow-md hover:shadow-xl transition-all ease-in-out flex rounded-md px-2 text-center justify-center items-center"
+        id="semesterSelect"
+      >
+        <option class="text-start text" value="1">Semester 1</option>
+        <option class="text-start text" value="2">Semester 2</option>
+        <option class="text-start text" value="3">Semester 3</option>
+        <option class="text-start text" value="4">Semester 4</option>
+        <option class="text-start text" value="5">Semester 5</option>
+        <option class="text-start text" value="6">Semester 6</option>
+        <option class="text-start text" value="7">Semester 7</option>
+        <option class="text-start text" value="8">Semester 8</option>
+      </select>
+    </div>
+      <button
+        id="addAssignment"
+        class="createAssignment px-3 py-2 bg-blue-300 border-2 border-blue-300 h-fit text-sm hover:text-white rounded-lg hover:bg-blue-500 transition-all ease-in-out hover:border-blue-500"
+      >
+        Create
+      </button>
+    </div>
+    <div
+      class="assignment-list w-[60%] flex p-3 flex-col gap-5 ml-10 mt-10 rounded-md shadow-lg bg-blue-200"
+      id="assignmentListDiv"
+    >
+    </div>
+  </div>
+
+  <!-- assignemnt view model -->
+
+  <div
+    id="assignmentViewModal"
+    class="justify-center items-center transition-all ease-in-out duration-500 absolute top-[-100vh] w-[80%]"
+  >
+    <div
+      class="assignment-container w-[50%] h-[50%] ml-[20%] mt-[11%] bg-white rounded-lg shadow-lg"
+    >
+      <div class="flex bg-slate-200 rounded-t-lg justify-between">
+        <span class=" p-1 px-3">Assignment</span>
+        <span
+          id="viewAssignmentModeCloseBtn"
+          class=" hover:bg-red-500 cursor-pointer w-8 rounded-tr-lg text-xl flex justify-center items-center"
+        >&Cross;
+        </span>
+      </div>
+      <div class="ass-body p-1 m-2 border-2">
+        <div
+          class="ass-header px-1 text-2xl max-h-36 overflow-y-scroll whitespace-pre-wrap"
+          id="assignmentTitle"
+        ></div>
+        <hr>
+        <div
+        class="ass-desc p-1 h-56 min-h-56 overflow-y-auto whitespace-pre-wrap"
+          id="assignmentDesc"
+        ></div>
+      <div class="dates flex justify-between p-2 px-3">
+        <div>
+          <span>Assinged Date:<span id="assignmentAssignedDate"></span></span>
+        </div>
+        <div>Due Date:<span id="assignmentDueDate"></span></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- addAssignmentMdel -->
+<div
+  id="addAssignmentModal"
+  class="flex transition-all ease-in-out left-24 top-[-100vh] absolute w-[86%]"
+>
+  <div
+    class="container gap-1 mt-28 relative flex flex-col w-[35%] m-auto h-fit rounded-lg shadow-xl bg-white">
+    <div class="flex rounded-t-lg bg-slate-200 justify-between">
+      <div class="border-blue-600 p-1 px-3">Add assignment</div>
+      <div
+        id="addAssignmentModalCloseBtn"
+        class="text-xl rounded-tr-lg flex justify-center items-center w-8 cursor-pointer hover:bg-red-500"
+      >
+        &Cross;
+      </div>
+    </div>
+    <div class="p-5">
+      <div class="flex w-full justify-between">
+        <div class="grid gap-1">
+          <label for="semesterValue">Choose semester</label>
+          <select
+            class="semester appearance-none p-2 w-fit cursor-pointer bg-white border-2 border-blue-300 text-sm rounded-md"
+            id="semesterValue"
+          >
+            <option value="1">Semester 1</option>
+            <option value="2">Semester 2</option>
+            <option value="3">Semester 3</option>
+            <option value="4">Semester 4</option>
+            <option value="5">Semester 5</option>
+            <option value="6">Semester 6</option>
+            <option value="7">Semester 7</option>
+            <option value="8">Semester 8</option>
+          </select>
+        </div>
+        <div class="grid gap-1">
+          <label class="font-bold">Due date</label>
+          <input
+            class="border-2 h-8 border-blue-500 rounded-md px-2"
+            type="date"
+            id="addAssignmentDate"
+            placeholder="DD/MM/YYYY"
+          />
+        </div>
+      </div>
+      <div class="grid gap-2">
+        <label class="font-bold">Title</label>
+        <input
+          class="border-2 border-blue-500 rounded-md p-1 px-2"
+          type="text"
+          id="addAssignmentTitle"
+          placeholder="Assignment title"
+          required
+        />
+        <label class="font-bold">Description</label>
+        <textarea
+          id="addAssignmentDesc"
+          cols="30"
+          rows="10"
+          class="border-2 border-blue-500 rounded-md resize-none px-2 py-1"
+          placeholder="Assignment Description"
+        ></textarea>
+      </div>
+
+      <div class="flex justify-end mt-2">
+        <button
+          id="submitBtn"
+          class="w-fit border-2 border-blue-500 px-7 rounded-md hover:bg-blue-500 transition-all ease-in-out hover:text-white shadow-md"
+        >
+          Submit
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- edit assignemnt -->
+<div
+  id="editAssignmentModel"
+  class="flex transition-all ease-in-out left-24 top-[-100vh] absolute w-[86%]"
+>
+  <div
+    class="container gap-1 mt-28 relative flex flex-col w-[35%] m-auto h-fit rounded-lg shadow-xl bg-white">
+    <div class="flex rounded-t-lg bg-slate-200 justify-between">
+      <div class="border-blue-600 p-1 px-3">Edit assignment</div>
+      <div
+        id="editAssignmentModalCloseBtn"
+        class="text-xl rounded-tr-lg flex justify-center items-center w-8 cursor-pointer hover:bg-red-500"
+      >
+        &Cross;
+      </div>
+    </div>
+    <div class="p-5">
+      <div class="flex w-full justify-between">
+        <div class="grid gap-1">
+          <label for="semesterValue">Choose semester</label>
+          <select
+            class="semester h-8 w-24 cursor-pointer bg-white border-2 border-blue-300 text-sm rounded-md text-center"
+            id="editSemesterValue"
+          >
+            <option value="1">Semester 1</option>
+            <option value="2">Semester 2</option>
+            <option value="3">Semester 3</option>
+            <option value="4">Semester 4</option>
+            <option value="5">Semester 5</option>
+            <option value="6">Semester 6</option>
+            <option value="7">Semester 7</option>
+            <option value="8">Semester 8</option>
+          </select>
+        </div>
+        <div class="grid gap-1">
+          <label class="font-bold">Due date</label>
+          <input
+            class="border-2 h-8 border-blue-500 rounded-md px-2"
+            type="date"
+            id="editAssignmentDate"
+            placeholder="DD/MM/YYYY"
+          />
+        </div>
+      </div>
+      <div class="grid gap-2">
+        <label class="font-bold">Title</label>
+        <input
+          class="border-2 border-blue-500 rounded-md p-1 px-2"
+          type="text"
+          id="editAssignmentTitle"
+          placeholder="Assignment title"
+          required
+        />
+        <label class="font-bold">Description</label>
+        <textarea
+          id="editAssignmentDesc"
+          cols="30"
+          rows="10"
+          class="border-2 border-blue-500 rounded-md resize-none px-2 py-1"
+          placeholder="Assignment Description"
+        ></textarea>
+      </div>
+
+      <div class="flex justify-end mt-2">
+        <button
+          id="editsubmitBtn"
+          class="w-fit border-2 border-blue-500 px-7 rounded-md hover:bg-blue-500 transition-all ease-in-out hover:text-white shadow-md"
+        >
+          Submit
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+<script src="../../scripts/admin/assignment/assignmentModelController.js"  ></script>
+<script src="../../scripts/admin/assignment/assignmentRenderer.js"  ></script>

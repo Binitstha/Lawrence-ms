@@ -1,0 +1,55 @@
+<div id="loginModel">
+  <span id="loginModelText">Logged In</span>
+</div>
+<div class="main shadow-lg rounded-lg border-1 p-6">
+  <div class="container w-[23rem]">
+    <h3 class="text-3xl">Welcome Back</h3>
+    <p class="text-xl">Please login your account</p>
+    <label for="email" class="px-1">Email <span class="text-red-500">*</span></label>
+    <input class="bg-slate-100 p-2" type="email" placeholder="Enter your email" id="email" class="" required />
+    <div class="passDiv">
+      <label for="password">Password <span class=" text-red-500">*</span></label>
+      <div class="w-full relative">
+        <input
+        type="password"
+        placeholder="Enter your password"
+        id="password"
+        required
+        class=" bg-slate-100 p-2 w-full"
+        />
+        <i class="fa-regular fa-eye-slash eyeIc text-[1.1rem] absolute top-[.8rem] right-3 w-5 h-5" id="eyeIcon"></i>
+      </div>
+      </div>
+
+    <div class="remember">
+      <div>
+        <input  type="checkbox" id="rememberCheckBox" class="w-4"/>
+        <label for="rememberCheckBox">Remember me</label>
+      </div>
+      <a
+        href="#"
+        style="
+              display: flex;
+              font-size: 0.7em;
+              justify-content: center;
+              align-items: center;
+            "
+        >Forget password ?
+      </a>
+    </div>
+    <div
+      class="loginBtn cursor-pointer transition-all ease-in-out text-center bg-blue-400 hover:bg-blue-500"
+      id="loginBtn"
+    >
+      Login
+    </div>
+    <span class="registerSpan">
+      <p>Don't have an account?</p>
+      <a href="register.html">Register here</a>
+    </span>
+  </div>
+</div>
+
+  <script src="../../scripts/login/script.js"></script>
+
+

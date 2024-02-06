@@ -1,0 +1,305 @@
+---
+import AddQuestion from "../admin/addQuestion_.astro";
+import deleteQuestion from "./deleteQuestion_.astro";
+---
+
+<section class="m-2 mx-10 h-fit flex justify-center">
+  <slot />
+  <div id="questionContainer" class="p-6 shadow-xl m-3 w-[70%] h-fit"></div>
+  <div class="flex flex-col item-center">
+    <div
+      id="semesterChooseDiv"
+      class="p-6 m-3 rounded-lg shadow-lg h-fit sticky w-full top-[20px]"
+    >
+      <p class="my-2">Years</p>
+      <hr />
+      <div class="flex flex-col">
+        <button
+          id="Btns"
+          data-selectedYear="2078"
+          class="w-fit cursor-pointer hover:border-b-2 hover:border-blue-500 hover:transition-opacity"
+          >2078 year</button
+        >
+        <button
+          id="Btns"
+          data-selectedYear="2076"
+          class="w-fit cursor-pointer hover:border-b-2 hover:border-blue-500 hover:transition-opacity"
+          >2076 year</button
+        >
+        <button
+          id="Btns"
+          data-selectedYear="2075"
+          class="w-fit cursor-pointer hover:border-b-2 hover:border-blue-500 hover:transition-opacity"
+          >2075 year</button
+        >
+        <button
+          id="Btns"
+          data-selectedYear="2074"
+          class="w-fit cursor-pointer hover:border-b-2 hover:border-blue-500 hover:transition-opacity"
+          >2074 year</button
+        >
+      </div>
+    </div>
+    <div class="flex flex-col gap-2 sticky top-[13.7rem]">
+      <button
+        id="addQuestion"
+        class="rounded-md shadow-lg p-2 mx-3 w-full hover:scale-105 hover:shadow-xl hover:bg-blue-300 hover:transition-all hover:duration-100"
+        >ADD question &plus;</button
+      >
+    </div>
+  </div>
+</section>
+
+<script  >
+  import { chapterName } from "../../scripts/semester/semester";
+  import Semester from "../semester_.astro";
+
+  const addQuestion = document.getElementById("addQuestion");
+  const addQuestionModel = document.getElementById("addQuestionModel");
+  const closeAddModel = document.getElementById("closeAddModel");
+
+  document.addEventListener("DOMContentLoaded", () => {
+    function getCookie(name) {
+      const cookies = document.cookie.split(";");
+      for (let i = 0; i < cookies.length; i++) {
+        const cookie = cookies[i].trim();
+        if (cookie.startsWith(name + "=")) {
+          return cookie.substring(name.length + 1);
+        }
+      }
+      return null;
+    }
+    closeAddModel.addEventListener("click", () => {
+      addQuestionModel.style.top = "-100vh";
+      addQuestionModel.style.transition = "ease-out .3s";
+    });
+    addQuestion.addEventListener("click", () => {
+      addQuestionModel.style.top = "18vh";
+      addQuestionModel.style.transition = "ease-in .3s";
+    });
+
+    const semesterId = getCookie("semesterId");
+    const subCode = getCookie("subjectId");
+    let fullmark = (subCode=="csc112" || subCode == "csc163")? 80:60
+    let passmark = (subCode=="csc112" || subCode == "csc163")? 30:24
+    function getSubName(id) {
+      const selectedSem = chapterName.find((e) => e.semesterId == semesterId);
+      if (selectedSem) {
+        const selectedSub = selectedSem.subjects.find((a) => a.subjectId == id);
+        if (selectedSub) {
+          return selectedSub.subjectName;
+        }
+      }
+    }
+
+    const yearBtns = document.querySelectorAll("#Btns");
+    let choosedYear= 2078;
+    fetchData();
+    Array.from(yearBtns).forEach((e) => {
+      e.addEventListener("click", () => {
+        const selectedYear = e.getAttribute("data-selectedYear");
+        choosedYear = parseInt(selectedYear, 10);
+        fetchData();
+      });
+    });
+    function deleteBtn(question, year, mark) {
+      const deleteConfirmationBox = document.getElementById(
+        "deleteConfirmationBox"
+      );
+      const serverErrorBox = document.getElementById("deleteServerErrorBox");
+      const errorBox = document.getElementById("deleteErrorBox");
+      const deleteValue = {
+        question: question,
+        semester: semesterId,
+        subject_code: subCode,
+        year: `${year}`,
+        mark: `${mark}`,
+      };
+      console.log(deleteValue);
+      fetch("http://localhost:3000/api/questions/questionDelete", {
+        method: "POST",
+        headers: {
+          "Content-type": "application/json",
+        },
+        body: JSON.stringify(deleteValue),
+      })
+        .then((response) => {
+          if (response.ok) {
+            deleteConfirmationBox.style.transition = "ease-out .3s";
+            setTimeout(() => {
+              deleteConfirmationBox.style.top = "-100vh";
+            }, 2500);
+            setTimeout(() => {
+              deleteConfirmationBox.style.top = "0";
+            }, 500);
+            return response.json();
+          } else if (response.status == 404) {
+            const errorBox = document.getElementById("deleteErrorBox");
+            errorBox.style.transition = "ease-out .3s";
+            errorBox.style.top = "0";
+            setTimeout(() => {
+              errorBox.style.top = "-100vh";
+            }, 2500);
+          } else {
+            const serverErrorBox = document.getElementById(
+              "deleteServerErrorBox"
+            );
+            serverErrorBox.style.transition = "ease-out .3s";
+            serverErrorBox.style.top = "0";
+            setTimeout(() => {
+              serverErrorBox.style.top = "-100vh";
+            }, 2500);
+          }
+        })
+        .then((data) => {
+          console.log("Data deleted", data);
+          return data;
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    }
+
+    function fetchData() {
+      fetch("http://localhost:3000/api/questions/getQuestions", {
+        method: "GET",
+        headers: {
+          "content-type": "application/json",
+        },
+      })
+        .then((response) => response.json())
+        .then((data) => {
+          console.log(data)
+          render(data, choosedYear, semesterId);
+        });
+    }
+    function render(data, choosedYear, semesterId) {
+      const selectedSem = data.filter((e) => e.semester == semesterId);
+      let questionContainer =
+      document.getElementById("questionContainer");
+      questionContainer.innerHTML = "";
+      
+      if (selectedSem) {
+        const selectedSub = selectedSem.filter(
+          (e) => e.subject_code == subCode
+          );
+          if (selectedSub) {
+            const selectedYear = selectedSub.filter((e) => e.year == choosedYear);
+            if (selectedYear) {
+              const secA = selectedYear.filter((e) => e.mark === "10");
+            let secAdiv = "";
+            if (secA) {
+              secA.forEach((Element, index) => {
+                const imageBuffer = Element.image
+                  ? `<img class="p-2" src= "http://localhost:3000/${Element.image}" width='180px' alt="img">`
+                  : ``;
+                secAdiv += `
+                <div class="questionDetail flex justify-between gap-7 w-full">
+                  <div class=" flex gap-2">
+                      <p class="w-fit">${index + 1}.</p>
+                      <p class="">${Element.question}</p>
+                      <p>[${Element.mark}]</p>
+                  </div>
+                  <div class="w-[5rem] flex justify-end p-1 h-fit">
+                      <button class="deleteBtn w-7"><img class="border-2 p-1 rounded-md" width="28px" src="../../../assets/delete.png"></button>
+                  </div>
+                </div>
+                ${imageBuffer}
+                `;
+              });
+            }
+
+            const secB = selectedYear.filter((e) => e.mark === 5);
+            let secBdiv = "";
+            if (secB) {
+              secB.forEach((Element, index) => {
+                const imageBuffer = Element.image
+                  ? `<img class="p-2" src= "http://localhost:3000/${Element.image}" width='180px' alt="img">`
+                  : ``;
+                secBdiv += `
+                <div class="questionDetail flex justify-between gap-7 w-full">
+                  <div class="flex gap-2">
+                    <p calss="w-fit">${index + 1}.</p>
+                    <p class="w-fit">${Element.question}</p>
+                    <p>[${Element.mark}]</p>
+                    </div>
+                  <div class="w-[5rem] flex justify-end p-1 h-fit">
+                      <button class="w-7 deleteBtn"><img class="border-2 p-1 rounded-md" width="28px" src="../../../assets/delete.png"></button>
+                      </div>
+                      </div>
+                ${imageBuffer}
+                `;
+              });
+            }
+
+            const listItem = document.createElement("div");
+            listItem.innerHTML = `<div class="flex justify-center py-5 flex-col w-full items-center content-center">
+            <p>Tribhuvan univarsity</p>
+            <p>Institute of Science and Technology</p>
+            <p>Year ${choosedYear}</p>
+            </div>
+            <div class="py-4 flex justify-between">
+              <div class="">
+                <p>Bachelor Level / semester-${semesterId} / Science</p>
+                <p>CSIT</p>
+                <div class="overflow-hidden flex"><p class=" max-w-[200px] text-ellipsis truncate">${getSubName(
+                  subCode
+                )} </p><p> (${subCode})</p></div>
+                </div>
+                <div>
+                  <p>Full mark: ${fullmark}</p>
+                  <p>pass mark: ${passmark}</p>
+                  <p>time: 3 hrs</p>
+                  </div>
+                  </div>
+                  <div class="py-4 text-sm">Candidates are required to give their answers in their own words as far as practicable.
+                    The figures in the margin indicate full marks.</div>
+                    <div>
+                      <div class="px-8">
+                        <p class="flex py-3 justify-center">Section A</p>
+                        <div class=" py-3 w-full flex justify-between">
+                          <p>Attemp any two questions</p>
+                          <p>[10*2=20]</p>
+                          </div>
+                          <div class="px-3 flex flex-col gap-3">${secAdiv}</div>
+                          </div>
+                          <div class="px-8">
+                            <p class="flex py-3 justify-center">Section B</p>
+                        <div class="py-3 w-full flex justify-between">
+                          <p>Attemp any two questions</p>
+                          <p>[8*5=40]</p>
+                        </div>
+                      <div class="px-3 gap-7">
+                        ${secBdiv}</p>
+                        </div>
+                        </div>
+                        </div>`;
+            questionContainer?.append(listItem);
+
+            const deleteBtns = listItem.getElementsByClassName("deleteBtn");
+            Array.from(deleteBtns).forEach((e) => {
+              e.addEventListener("click", () => {
+                const questionElement = e
+                  .closest(".questionDetail")
+                  .querySelector("p:nth-child(2)");
+                console.log(questionElement);
+                const markElement = e
+                  .closest(".questionDetail")
+                  .querySelector("p:nth-child(3)");
+                console.log(markElement);
+                console.log(questionElement);
+                const question = questionElement
+                  ? questionElement.textContent
+                  : "";
+                const year = choosedYear;
+                const mark = markElement.textContent;
+                const markNumber = parseInt(mark.slice(1, 3));
+                deleteBtn(question, year, markNumber);
+              });
+            });
+          }
+        }
+      }
+    }
+  });
+</script>

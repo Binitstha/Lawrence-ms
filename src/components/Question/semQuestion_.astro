@@ -1,0 +1,54 @@
+---
+---
+<div class="font-bold p-5 text-2xl text-center w-full">
+  <span class="border-b-[3px] py-2 border-blue-500">Semesters</span>
+</div>
+<div id="semesterDiv" class="flex justify-center gap-7 flex-wrap mt-7"></div>
+<script  >
+  import {chapterName} from "../../../src/scripts/semester/semester.js"
+  document.addEventListener("DOMContentLoaded", () => {
+    chapterName.forEach(e=>{
+      console.log(e.subjects)
+    })
+    const semesterDiv = document.getElementById("semesterDiv");
+    chapterName.forEach((e) => {
+        const listItem = document.createElement("div");
+        let subjectHTML = "";
+        e.subjects.forEach((el) => {
+            subjectHTML += `<p class="text-ellipsis truncate text-[.9rem]">${el.subjectName}</p>`;
+          });
+        
+          listItem.innerHTML = `<div class="p-2 rounded-md  bg-blue-200 shadow-lg  hover:scale-[1.03] transition-all ease-in-out  box1 w-[17rem] h-[15rem]">
+          <div class="text-3xl">SEMESTER ${e.semesterId}</div>
+          <div class="h-[64%] p-2">
+              ${subjectHTML}
+              </div>
+              <hr>
+              <div class="flex justify-end">
+                  <a id="subjectBtn" href="/Questions/subQuestion" class="subjectBtn mt-2 bg-slate-200 rounded-sm p-1 px-3" data-id="${e.semesterId}">Subjects &rarr;</a>
+                  </div>
+                  </div>`;
+                semesterDiv.appendChild(listItem);
+              });
+              
+              function setSemesterIdCookie(semesterId) {
+                  const expirationDate = new Date();
+                  expirationDate.setHours(expirationDate.getHours() + 30);
+                
+                  const cookieString = `semesterId=${semesterId}; expires=${expirationDate.toUTCString()}; path=/`;
+
+                  document.cookie = cookieString;
+                }
+                
+                const subjectBtns = document.querySelectorAll(".subjectBtn");
+                
+                subjectBtns.forEach((btn) => {
+                    btn.addEventListener("click", function () {
+                        const id = this.getAttribute("data-id");
+                        setSemesterIdCookie(id);
+                      });
+                    });
+                  });
+                </script>
+
+<script src="../../../src/scripts/semester/semester.js"  ></script>

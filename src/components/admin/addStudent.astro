@@ -1,0 +1,203 @@
+---
+
+---
+
+<div class="mainBox w-full h-[91vh] flex flex-col px-10 bg-gray-100">
+  <div class="font-bold p-5 text-2xl text-center w-full">
+    <span class="border-b-[3px] py-2 border-blue-500">Add Student</span>
+  </div>
+  <div class="font-bold text-orange-400">
+    Fill up the form below to add a student
+  </div>
+  <div class="add-student-container shadow-md bg-white rounded-md mt-10 p-5">
+    <form
+      action="/addStudent"
+      id="addStudentForm"
+	  method="post"
+      enctype="multipart/form-data"
+      class="grid grid-cols-3"
+    >
+      <div>
+        <label for="name" class="text-sm font-bold flex pb-2"
+          >Name &nbsp;<span class="requiredDot"></span>
+        </label>
+        <input
+          type="text"
+          name="name"
+          id="studentName"
+          class="bg-gray-100 border-2 border-blue-200 rounded-md"
+          required
+        />
+        <br />
+      </div>
+
+      <div>
+        <label for="email" class="text-sm font-bold flex pb-2"
+          >Email &nbsp;<span class="requiredDot"></span>
+        </label>
+        <input
+          type="email"
+          name="email"
+          id="studentEmail"
+          class="bg-gray-100 border-2 border-blue-200 rounded-md"
+          required
+        />
+        <br />
+      </div>
+
+      <div>
+        <label for="contact" class="text-sm font-bold flex pb-2"
+          >Contact &nbsp;<span class="requiredDot"></span>
+        </label>
+        <input
+          type="number"
+          name="contact"
+          id="studentContact"
+          class="bg-gray-100 border-2 border-blue-200 rounded-md"
+          required
+        />
+        <br />
+      </div>
+
+      <div>
+        <label for="address" class="text-sm font-bold flex pb-2"
+          >Address &nbsp;<span class="requiredDot"></span>
+        </label>
+        <input
+          type="text"
+          name="address"
+          id="studentAddress"
+          class="bg-gray-100 border-2 border-blue-200 rounded-md"
+        />
+        <br />
+      </div>
+
+      <div>
+        <label for="age" class="text-sm font-bold flex pb-2"
+          >Age &nbsp;<span class="requiredDot"></span>
+        </label>
+        <input
+          type="number"
+          name="age"
+          id="studentAge"
+          class="bg-gray-100 border-2 border-blue-200 rounded-md"
+        />
+        <br />
+      </div>
+
+      <div class="relative">
+        <label for="password" class="text-sm font-bold flex pb-2"
+          >Password &nbsp;<span class="requiredDot"></span>
+        </label>
+        <input
+          type="text"
+          name="password"
+          id="studentPassword"
+          class="bg-gray-100 border-2 z-10 border-blue-200 rounded-md"
+          required
+        />
+        <br />
+        <div id="randomPassword" class="absolute right-[12%] top-7">
+          <i
+            id="randomPassGen"
+            class="fa-solid fa-dice text-blue-800 cursor-pointer z-20 hover:text-blue-500 transition-all ease-in-out"
+          ></i>
+        </div>
+      </div>
+
+      <div class="flex gap-10 items-center">
+        <div class="flex flex-col">
+          <label for="gender" class="text-sm font-bold flex">Gender</label>
+          <select
+            name="gender"
+            id="studentGender"
+            class="border-2 border-blue-200 rounded-md mt-1 py-1 text-sm w-full"
+          >
+            <option value="1">Male</option>
+            <option value="2">Female</option>
+            <option value="0">Others</option>
+          </select>
+          <br />
+        </div>
+        <div class="flex flex-col">
+          <label for="semester" class="text-sm font-bold">Semester</label>
+          <select
+            name="semester"
+            id="studentSemester"
+            class="border-2 border-blue-200 rounded-md mt-1 py-1 text-sm w-full"
+          >
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+            <option value="6">6</option>
+            <option value="7">7</option>
+            <option value="8">8</option>
+          </select>
+          <br />
+        </div>
+      </div>
+      <div class="photo-input">
+        <label for="photo" class="text-sm font-bold flex"
+          >Photo &nbsp; <div class="requiredDot"></div>
+        </label>
+        <input
+          type="file"
+		  accept="image/*"
+          id="studentPhoto"
+          name="photo"
+          class="text-sm rounded-md"
+        />
+      </div>
+      <button
+        type="submit"
+        id="submitBtn"
+        class="submitBtn border-2 border-blue-300 rounded-md px-5 py-1 hover:bg-blue-300 transition-all ease-in-out"
+      >
+        Submit
+      </button>
+    </form>
+  </div>
+</div>
+<div id="addStudentModal" class="absolute -top-20 right-[45%]">
+  <div id="notifyModal" class="bg-blue-400 px-5 py-2 rounded-md text-white">
+    Alert
+  </div>
+</div>
+
+<script type="module"  >
+  document.getElementById("randomPassGen").addEventListener("click", () => {
+    const length = 10;
+    const charset =
+      "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%^&*()_-+=<>?";
+    let password = "";
+
+    for (let i = 0; i < length; i++) {
+      const randomIndex = Math.floor(Math.random() * charset.length);
+      password += charset.charAt(randomIndex);
+    }
+    const passwordInputBox = document.getElementById("studentPassword");
+    passwordInputBox.value = password;
+  });
+
+
+
+
+</script>
+
+<script src="../../scripts/admin/addStudent.js"  ></script>
+<style>
+  form input {
+    margin-bottom: 15px;
+    width: 90%;
+    padding: 0px 5px;
+  }
+  .requiredDot {
+    display: flex;
+    height: 7px;
+    width: 7px;
+    background-color: red;
+    border-radius: 25px;
+  }
+</style>
