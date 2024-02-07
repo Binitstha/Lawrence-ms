@@ -4,9 +4,9 @@ const eyeIcon = document.getElementById("eyeIcon");
 eyeIcon.addEventListener("click", () => {
 	eyeIcon.classList.contains("fa-eye")
 		? eyeIcon.classList.replace("fa-eye", "fa-eye-slash") &&
-		  passwordInput.setAttribute("type", "password")
+		passwordInput.setAttribute("type", "password")
 		: eyeIcon.classList.replace("fa-eye-slash", "fa-eye") &&
-		  passwordInput.setAttribute("type", "text");
+		passwordInput.setAttribute("type", "text");
 });
 
 // notify model
@@ -72,29 +72,27 @@ const fetchToken = (email, pass) => {
 				notify(resData.error.message);
 				return console.log(resData.error.message);
 			}
-			document.cookie = `userData=${JSON.stringify(resData.data)}`;
-			return storeDataToLocalstorage(resData.data.id);
-			
+			localStorage.setItem("token", resData.data);
+			return storeDataToLocalstorage(resData.data);
 		});
 };
 
-const storeDataToLocalstorage=async (id)=>{
-	fetch("http://localhost:3000/api/auth/getFullUserDetails",{
-		method:"POST",
-		headers:{
-			"content-type":"application/json",
+const storeDataToLocalstorage = async (token) => {
+	fetch("http://localhost:3000/api/auth/getFullUserDetails", {
+		method: "POST",
+		headers: {
+			"content-type": "application/json",
+			Authorization: `Bearer ${token}`
 		},
-		body:JSON.stringify({
-			id:id
-		})
-	}).then((response)=>{
-		if(!response.ok){
+	}).then((response) => {
+		if (!response.ok) {
 			return console.log("Response error");
 		}
 		return response.json();
-	}).then( (data)=>{
-		localStorage.setItem('user-details',JSON.stringify(data.data));
-	}).then(()=>{
+	}).then((data) => {
+		localStorage.setItem('user-details', JSON.stringify(data.data));
 		return (window.location.href = "/dashboard/");
+	}).catch((err) => {
+		console.error(err)
 	})
 }
