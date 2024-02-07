@@ -72,6 +72,7 @@ const fetchToken = (email, pass) => {
 				notify(resData.error.message);
 				return console.log(resData.error.message);
 			}
+			document.cookie = "user-detail" + JSON.stringify(resData.data);
 			localStorage.setItem("token", resData.data);
 			return storeDataToLocalstorage(resData.data);
 		});
@@ -90,7 +91,9 @@ const storeDataToLocalstorage = async (token) => {
 		}
 		return response.json();
 	}).then((data) => {
-		localStorage.setItem('user-details', JSON.stringify(data.data));
+		console.log(data)
+		const { photo, ...userDetail } = data.data
+		localStorage.setItem('user-details', JSON.stringify(userDetail));
 		return (window.location.href = "/dashboard/");
 	}).catch((err) => {
 		console.error(err)

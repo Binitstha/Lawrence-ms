@@ -1,6 +1,6 @@
-<div class="left-side w-[50%] flex">
+<div class="left-side w-[50%] flex items-center">
     <div class="photo">
-        <img src="../../../../assets/demo.jpg" height="200px" width="200px" class="bg-center bg-cover rounded-md" alt="user photo">
+        <img id="userImage" height="200px" width="200px" class="bg-center bg-cover rounded-md" alt="user photo">
     </div>
     <div class="user-details flex">
         <div class=" flex flex-col labels pl-10  py-2 font-bold">
@@ -12,12 +12,12 @@
             <div class="border-b-2 border-gray-200 py-3" >Phone </div>
         </div>
         <div class="values flex flex-col labels   py-2 text-gray-500">
-            <div class="border-b-2 border-gray-200 py-3 pl-10" id="name">Sachet Subedi</div>
-            <div class="border-b-2 border-gray-200 py-3 pl-10" id="age">20</div>
+            <div class="border-b-2 border-gray-200 py-3 pl-10" id="name"></div>
+            <div class="border-b-2 border-gray-200 py-3 pl-10" id="age"></div>
             <div class="border-b-2 border-gray-200 py-3 pl-10 " id="position">Teacher</div>
-            <div class="border-b-2 border-gray-200 py-3 pl-10" id="email">sachetsubedi001@gmail.com</div>
-            <div class="border-b-2 border-gray-200 py-3 pl-10" id="address">Tokha</div>
-            <div class="border-b-2 border-gray-200 py-3 pl-10" id="contact">9860251616 </div>
+            <div class="border-b-2 border-gray-200 py-3 pl-10" id="email"></div>
+            <div class="border-b-2 border-gray-200 py-3 pl-10" id="address"></div>
+            <div class="border-b-2 border-gray-200 py-3 pl-10" id="contact"></div>
         </div>
     </div>
 </div>
@@ -50,5 +50,28 @@
     document.getElementById('age').innerHTML=userData.age;
     document.getElementById('address').innerHTML=userData.address;
     document.getElementById('position').innerHTML=userData.role;
+
+    const userImage = document.getElementById("userImage")
+
+  const token = localStorage.getItem('token')
+  fetch("http://localhost:3000/api/auth/getFullUserDetails", {
+		method: "POST",
+		headers: {
+			"content-type": "application/json",
+			Authorization: `Bearer ${token}`
+		},
+	}).then((response) => {
+		if (!response.ok) {
+            return console.log("Response error");
+		}
+		return response.json();
+	}).then((data) => {
+        console.log(data)
+		const { photo, ...userDetail } = data.data
+        console.log(photo)
+        userImage.setAttribute("src",`http://localhost:3000/${photo}`)
+	}).catch((err) => {
+		console.error(err)
+	})
 
 </script>

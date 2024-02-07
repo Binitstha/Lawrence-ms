@@ -39,15 +39,11 @@
         const sideBtns = document.querySelectorAll('.side-nav-buttons');
         sideBtns.forEach((btn) => {
             const currLocation = btn.getAttribute('href');
-            console.log(currLocation);
-            console.log(window.location.pathname);
             if (currLocation == window.location.pathname) {
-                console.log(true);
                 btn.classList.add('border-l-8');
                 btn.classList.add('border-blue-500');
                 btn.classList.add('bg-blue-100');
             } else {
-                console.log(false);
                 btn.classList.remove('border-l-8');
                 btn.classList.remove('border-blue-500');
                 btn.classList.remove('bg-blue-100');

@@ -1,6 +1,6 @@
-// import Cookies from "js-cookie";
-// if (window.location.href!='/'){
-//     if(!Cookies.get('userData')){
-//         window.location.href='/';
-//     }
-// }
+import Cookies from "js-cookie";
+if (window.location.href!='/'){
+    if(!localStorage.getItem('user-details')){
+        window.location.href='/';
+    }
+}

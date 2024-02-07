@@ -87,7 +87,7 @@
     const addQuestionModel = document.getElementById("addQuestionModel");
     const addQuestion = document.getElementById("addQuestion");
 
-    function getCookie() {
+    function getCookie(name) {
       const cookies = document.cookie.split(";");
       for (let i = 0; i < cookies.length; i++) {
         const cookie = cookies[i].trim();
@@ -97,6 +97,13 @@
       }
       return null;
     }
+    const question = document.getElementById(
+      "questionInput") as HTMLInputElement;
+    const year = document.getElementById("yearInput") as HTMLInputElement;
+    const subCode = getCookie("subjectId");
+    let mark = document.getElementById("markInput") as HTMLInputElement;
+    let imageInput = document.getElementById("imageInput") as HTMLInputElement;
+    let semChoose = getCookie("semesterId");
 
     addQuestion.addEventListener("click", () => {
       question.value = "";
@@ -104,13 +111,6 @@
       mark.value = "";
       imageInput.value = "";
     });
-    const question = document.getElementById(
-      "questionInput") ;
-    const year = document.getElementById("yearInput") ;
-    const subCode = getCookie("subjectId");
-    let mark = document.getElementById("markInput") ;
-    let imageInput = document.getElementById("imageInput") ;
-    let semChoose = getCookie("semesterId");
     const form = document.getElementById("questionData") ;
     if (form) {
       form.addEventListener("submit", (event) => {
