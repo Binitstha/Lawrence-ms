@@ -6,3 +6,4 @@ tailwind.config.js
 astro.config.mjs
 .astro
 .vscode
+dist
