@@ -1,5 +1,5 @@
 const fetchAttendance = (semesterId) => {
-	fetch(`http://localhost:3000/api/attendance/getAttendance?semesterId=${semesterId}`, {
+	fetch(`http://localhost:3000/api/attendance/getAttendance?semesterId=${semesterId||1}`, {
 		method: "GET",
 		
 	})
