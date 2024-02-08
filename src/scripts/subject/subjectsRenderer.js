@@ -136,7 +136,7 @@ function subNameRender(semesterId) {
 		semester.subjects.forEach((subject) => {
 
             let chapters='';
-            
+
             for(let i=0;i<7;i++){
                 chapters+=`<div class="whitespace-nowrap overflow-hidden">- ${subject.chapters[i]} </div>`;
             }
@@ -148,8 +148,8 @@ function subNameRender(semesterId) {
                 ${chapters}
             </div>
             <div class="bootomInfo flex bg-white px-2 text-bold justify-between rounded-md font-medium mt-2">
-                <div id="subCode">CSC101</div>
-                <div><span id="ChapterCount">10+</span> chapters</div>
+                <div id="subCode">${subject.subjectId}</div>
+                <div><span id="ChapterCount">${(subject.chapters).length}+</span> chapters</div>
             </div>
        </div>`
        subjectContainer.append(newItem);
