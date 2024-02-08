@@ -41,7 +41,7 @@ const fetchAttendance = (semesterId) => {
 		})
 
 		.then((resData) => {
-			console.log(resData);
+			// console.log(resData);
 			const attSheet = document.getElementById("attandence");
 			attSheet.innerHTML = "";
 			resData.data.forEach((student) => {
@@ -57,7 +57,7 @@ const fetchAttendance = (semesterId) => {
 					"border-gray-400"
 				);
 				attSheet.appendChild(listItem);
-				console.log(student);
+				// console.log(student);
 			});
 		});
 };
