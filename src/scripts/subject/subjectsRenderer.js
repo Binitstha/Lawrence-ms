@@ -128,30 +128,31 @@
 // ];
 
 import { semesterDetails } from "../semester/semester.js";
-
-const subjectDiv = document.getElementById("subjectDiv");
+const subjectContainer=document.getElementById('subjectContainer');
 
 function subNameRender(semesterId) {
 	const semester = semesterDetails.find((sem) => sem.semesterId == semesterId);
 	if (semester) {
 		semester.subjects.forEach((subject) => {
-			subject.chapters.forEach((chapter) => {
-				const listItem = document.createElement("div");
-				let chapterHTML = "";
-					chapterHTML += `<p class="text-sm">${chapter}</p>`;
-				listItem.innerHTML = `<div class="p-2 rounded-md cursor-pointer bg-blue-200  hover:scale-[1.03] transition-all ease-in-out shadow-xl box2 w-[17rem] h-[15rem]">
-                                          <div class="text-3xl h-[2.4rem] text-ellipsis truncate">${chapter}</div>
-                                          <div class="h-[64%] p-2">
-                                            ${chapterHTML}
-                                          </div>
-                                          <hr>
-                                          <div class="flex justify-end">
-                                          <a href="subject.html" class="mt-2 bg-slate-200 rounded-sm p-1 px-3">Syllabus</a>
-                                          </div>
-                                          </div>`;
 
-				subjectDiv.appendChild(listItem);
-			});
+            let chapters='';
+            
+            for(let i=0;i<7;i++){
+                chapters+=`<div class="whitespace-nowrap overflow-hidden">- ${subject.chapters[i]} </div>`;
+            }
+
+            const newItem=document.createElement('div');
+            newItem.innerHTML=`<div  class="bg-blue-300 px-5 py-2 rounded-md">
+            <div id="subjectTopic" class="topic whitespace-nowrap overflow-hidden bg-white px-2 rounded-md font-semibold text-center " >${subject.subjectName}</div>
+            <div id="subjectList overflow-hidden whitespace-nowrap" class="mt-5">
+                ${chapters}
+            </div>
+            <div class="bootomInfo flex bg-white px-2 text-bold justify-between rounded-md font-medium mt-2">
+                <div id="subCode">CSC101</div>
+                <div><span id="ChapterCount">10+</span> chapters</div>
+            </div>
+       </div>`
+       subjectContainer.append(newItem);
 		});
 	}
 }
@@ -167,10 +168,10 @@ document.addEventListener("DOMContentLoaded", function () {
 	});
 	const semesterId = url.slice(index + 1);
 
-	const semesteriddiv = document.getElementById("semesterId");
-	const semesterItem = document.createElement("p");
-	semesterItem.innerHTML = `<p class="text-3xl p-5">Semester ${semesterId}</p>`;
-	semesteriddiv.appendChild(semesterItem);
+	// const semesteriddiv = document.getElementById("semesterId");
+	// const semesterItem = document.createElement("p");
+	// semesterItem.innerHTML = `<p class="text-3xl p-5">Semester ${semesterId}</p>`;
+	// semesteriddiv.appendChild(semesterItem);
     // console.log(semesterId)
 	subNameRender(semesterId);
 });
