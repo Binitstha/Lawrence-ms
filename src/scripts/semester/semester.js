@@ -1,4 +1,4 @@
-export const chapterName = [
+export const semesterDetails = [
     {
         semesterId: "1",
         subjects: [

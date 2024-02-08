@@ -1,8 +1,21 @@
-<div>
+<div class="px-10">
     <div class=" font-bold p-5 text-2xl text-center w-full"><span class="border-b-[3px] py-2 border-blue-500">Subjects</span></div>
-<div id="semesterId" class="flex">
-   
+<div id="semesterId" class="grid grid-cols-4">
+   <div id="subject" class="bg-blue-300 px-5 py-2 rounded-md">
+        <div id="subjectTopic" class="topic bg-white px-2 rounded-md font-semibold text-center">Subject 1 </div>
+        <div id="subjectList" class="mt-5">
+            <div class="overflow-hidden">- Introduction to Information and Technology</div>
+            <div>- C programming</div>
+            <div>- Digital Logic</div>
+            <div>- Mathematics I</div>
+            <div>- Physics </div>
+        </div>
+        <div class="bootomInfo flex bg-white px-2 text-bold justify-between rounded-md font-medium mt-2">
+            <div id="subCode">CSC101</div>
+            <div><span id="ChapterCount">10+</span> chapters</div>
+        </div>
+   </div>
 </div>
 <div id="subjectDiv" class="grid grid-cols-4 gap-7 flex-wrap mt-7 mx-12"></div>
 </div>
-<script src="../scripts/subject/subjectsRenderer.js"  ></script>
+<!-- <script src="../scripts/subject/subjectsRenderer.js"  ></script> -->
