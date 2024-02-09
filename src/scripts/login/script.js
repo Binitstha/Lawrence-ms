@@ -9,16 +9,6 @@ eyeIcon.addEventListener("click", () => {
 		passwordInput.setAttribute("type", "text");
 });
 
-// notify model
-const notifymodel = document.getElementById("loginModel");
-const notifyModelText = document.getElementById("loginModelText");
-const notify = (text) => {
-	notifyModelText.innerHTML = text;
-	notifymodel.style.top = "0vh";
-	setTimeout(() => {
-		notifymodel.style.top = "-100vh";
-	}, 1000);
-};
 //login
 const loginBtn = document.getElementById("loginBtn");
 
@@ -28,25 +18,20 @@ const setLoading = () => {
 const removeLoading = () => {
 	document.getElementById("loginBtn").innerHTML = "Login";
 };
+const errorBox = document.getElementById("errorBox")
 
-
-const loginUser = () => {
+const passwordDiv = document.getElementById("password")
+passwordDiv.addEventListener("change",()=>{
+	errorBox.classList.replace("flex","hidden")
+})
+const form = document.getElementById('form')
+form.addEventListener("submit",(event)=>{
+	event.preventDefault()
 	setLoading();
 	const email = document.getElementById("email").value;
 	const password = btoa(document.getElementById("password").value);
-
-	if (email == "" || password == "") {
-		removeLoading();
-		return notify("Fill in all the boxes");
-	}
 	fetchToken(email, password);
-};
-
-
-loginBtn.addEventListener("click", loginUser);
-document.addEventListener("keydown", (e) => {
-	e.key == "Enter" && loginUser();
-});
+})
 
 const fetchToken = (email, pass) => {
 	const requestBody = {
@@ -69,7 +54,7 @@ const fetchToken = (email, pass) => {
 		.then(async (resData) => {
 			if (resData.status != 200) {
 				removeLoading();
-				notify(resData.error.message);
+				errorBox.classList.replace("hidden","flex")
 				return console.log(resData.error.message);
 			}
 			document.cookie = "user-detail" + JSON.stringify(resData.data);

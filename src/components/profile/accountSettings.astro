@@ -49,18 +49,15 @@ import ProfileLayout from "./profileLayout.astro";
                 <div id="emailList" class="w-full">
                   <div
                     id="emailItem"
-                    class="flex justify-between text-lg text-gray-600"
+                    class="flex justify-between mx-2 text-lg text-gray-600"
                   >
-                    <span class="pl-5" id="asEmail"></span>
+                  <div class="my-2 mx-4 p-2 border-b-2 border-blue-500 flex items-center justify-between">
+                    <input class="  appearance-none focus:outline-none" id="asEmail">
+                  </input>
+                  <i class="fa-solid fa-pen"></i>
+                  </div>
                     <span class="pr-[40%]">Verified</span>
                   </div>
-                </div>
-                <div class="pt-5 pl-5">
-                  <button
-                    id="addEmail"
-                    class="border-2 border-blue-400 px-2 py-1 rounded-md cursor-pointer hover:bg-blue-400 transition-all ease-in-out hover:text-white"
-                    >Add email address</button
-                  >
                 </div>
               </div>
             </div>
@@ -85,7 +82,11 @@ import ProfileLayout from "./profileLayout.astro";
                     id="contactItem"
                     class="flex justify-between text-lg text-gray-600"
                   >
-                    <span class="pl-5" id="userContact"></span>
+                    <div id="userContact" class="my-2 mx-4 p-2 border-b-2 border-blue-500 flex items-center justify-between">
+                      <input class="  appearance-none focus:outline-none" id="asEmail">
+                    </input>
+                    <i class="fa-solid fa-pen"></i>
+                    </div>
                     <span class="pr-[40%]">Verified</span>
                   </div>
                 </div>
@@ -112,7 +113,7 @@ import ProfileLayout from "./profileLayout.astro";
 
   const userDetail = JSON.parse(localStorage.getItem("user-details"));
   userName.innerHTML = userDetail.name;
-  email.innerHTML = userDetail.email;
+  email.placeholder = userDetail.email;
   contactNumber.innerHTML = userDetail.contact;
 
   const userImage = document.getElementById("userImage");

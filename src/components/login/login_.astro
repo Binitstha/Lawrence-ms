@@ -1,55 +1,70 @@
-<div id="loginModel">
-  <span id="loginModelText">Logged In</span>
-</div>
-<div class="main shadow-lg rounded-lg border-1 p-6">
-  <div class="container w-[23rem]">
-    <h3 class="text-3xl">Welcome Back</h3>
-    <p class="text-xl">Please login your account</p>
-    <label for="email" class="px-1">Email <span class="text-red-500">*</span></label>
-    <input class="bg-slate-100 p-2" type="email" placeholder="Enter your email" id="email" class="" required />
-    <div class="passDiv">
-      <label for="password">Password <span class=" text-red-500">*</span></label>
-      <div class="w-full relative">
+<main class="flex justify-center items-center h-screen">
+  <section class="w-[25rem] p-7 rounded-xl shadow-2xl">
+    <div class="">
+      <div class="flex justify-center items-center flex-col gap-2 my-3">
+        <h3 class="text-3xl">Welcome Back</h3>
+        <p class="text-sm">
+          Enter your email and password to access your account
+        </p>
+      </div>
+      <form id="form" action="" class="flex flex-col gap-2">
+        <label for="email" class="px-1">Email</label>
         <input
-        type="password"
-        placeholder="Enter your password"
-        id="password"
-        required
-        class=" bg-slate-100 p-2 w-full"
+          class="bg-slate-100 p-2 rounded-md"
+          type="email"
+          placeholder="Enter your email"
+          id="email"
+          class=""
+          required
         />
-        <i class="fa-regular fa-eye-slash eyeIc text-[1.1rem] absolute top-[.8rem] right-3 w-5 h-5" id="eyeIcon"></i>
+        <label for="password">Password</label>
+        <div class="w-full relative">
+          <input
+            type="password"
+            placeholder="Enter your password"
+            id="password"
+            required
+            class="bg-slate-100 p-2 w-full rounded-md"
+          />
+          <i
+            class="fa-regular fa-eye-slash eyeIc text-[1.1rem] absolute top-[.8rem] right-3 w-5 h-5"
+            id="eyeIcon"></i>
+        </div>
+        <div
+          id="errorBox"
+          class="transition-opacity duration-[2s] ease-in-out rounded-md border-2 hidden gap-1 border-red-400 p-2 mt-2 justify-start items-center"
+        >
+          <div
+            class="rounded-full border-2 mx-1 h-5 border-red-400 text-red-400 w-5 text-sm flex justify-center items-center"
+          >
+            <span class="text-sm">!</span>
+          </div>
+          <div class="grid text-red-500">
+            <span>Your email or password are incorrect.</span>
+            <span>Please try again</span>
+          </div>
+        </div>
+        <div class="remember flex justify-between my-2">
+          <div class="flex justify-between gap-1 items-center">
+            <input type="checkbox" id="rememberCheckBox" class="w-3" />
+            <label for="rememberCheckBox">Remember me</label>
+          </div>
+          <a href="#" class="text-blue-600">Forgot password</a>
+        </div>
+        <button
+          id="loginBtn"
+          class="p-2 rounded-md cursor-pointer transition-all ease-in-out text-center bg-blue-400 hover:bg-blue-500"
+          type="submit"
+        >
+          Login
+        </button>
+      </form>
+      <div class="flex justify-between my-3">
+        <p>Don't have an account?</p>
+        <a href="register.html" class="text-blue-600">Register here</a>
       </div>
-      </div>
-
-    <div class="remember">
-      <div>
-        <input  type="checkbox" id="rememberCheckBox" class="w-4"/>
-        <label for="rememberCheckBox">Remember me</label>
-      </div>
-      <a
-        href="#"
-        style="
-              display: flex;
-              font-size: 0.7em;
-              justify-content: center;
-              align-items: center;
-            "
-        >Forget password ?
-      </a>
     </div>
-    <div
-      class="loginBtn cursor-pointer transition-all ease-in-out text-center bg-blue-400 hover:bg-blue-500"
-      id="loginBtn"
-    >
-      Login
-    </div>
-    <span class="registerSpan">
-      <p>Don't have an account?</p>
-      <a href="register.html">Register here</a>
-    </span>
-  </div>
-</div>
+  </section>
+</main>
 
-  <script src="../../scripts/login/script.js"></script>
-
-
+<script src="../../scripts/login/script.js"></script>
