@@ -1,0 +1,56 @@
+<main class="h-screen flex justify-center items-center">
+  <section class="p-5 rounded-xl shadow-xl w-[22rem]">
+      <div>
+          <div>
+              <p class="text-center text-3xl">Reset Password</p>
+              <p class="text-center py-2 w-56 m-auto text-sm">
+                  Please enter your new password
+              </p>
+          </div>
+          <div class="p-4 grid gap-3">
+              <form action="" class="grid gap-3" id="form">
+                  <div class="w-full relative">
+                      <label for="password" class="sr-only">Password</label>
+                      <input
+                          id="password"
+                          class="bg-slate-100 w-full rounded-md p-2"
+                          required
+                          type="password"
+                          placeholder="Password"
+                      />
+                      <i class="eye right-3 top-3 cursor-pointer absolute fa-regular fa-eye-slash"></i>
+                  </div>
+                  <div class="w-full relative">
+                      <label for="confirmPassword" class="sr-only">Confirm Password</label>
+                      <input
+                          id="confirmPassword"
+                          class="bg-slate-100 rounded-md p-2 w-full"
+                          required
+                          type="password"
+                          placeholder="Re-Type password"
+                      />
+                      <i class="eye cursor-pointer right-3 top-3 absolute fa-regular fa-eye-slash"></i>
+                  </div>
+                  <div id="error" class="hidden gap-1 text-sm rounded-md bg-red-100 p-2">
+                      <span class="text-red-500">Error:</span>
+                      <span class="text-red-900">Passwords do not match. Please try again.</span>
+                  </div>
+                  <button type="submit" class="bg-blue-400 rounded-md p-2 w-full">Reset</button>
+              </form>
+              <a href="/" class="w-fit text-blue-600 underline block text-center">Back to sign in</a>
+          </div>
+      </div>
+  </section>
+</main>
+
+<script>
+  const eyes = document.querySelectorAll('.eye');
+  Array.from(eyes).forEach(eye => {
+      eye.addEventListener("click", () => {
+          (eye.previousElementSibling as HTMLInputElement).type = (eye.previousElementSibling as HTMLInputElement).type === 'password' ? 'text' : 'password';
+          eye.classList.toggle('fa-eye');
+          eye.classList.toggle('fa-eye-slash');
+      });
+  });
+  
+</script>
