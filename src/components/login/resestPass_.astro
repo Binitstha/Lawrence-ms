@@ -1,56 +1,143 @@
 <main class="h-screen flex justify-center items-center">
   <section class="p-5 rounded-xl shadow-xl w-[22rem]">
+    <div>
       <div>
-          <div>
-              <p class="text-center text-3xl">Reset Password</p>
-              <p class="text-center py-2 w-56 m-auto text-sm">
-                  Please enter your new password
-              </p>
-          </div>
-          <div class="p-4 grid gap-3">
-              <form action="" class="grid gap-3" id="form">
-                  <div class="w-full relative">
-                      <label for="password" class="sr-only">Password</label>
-                      <input
-                          id="password"
-                          class="bg-slate-100 w-full rounded-md p-2"
-                          required
-                          type="password"
-                          placeholder="Password"
-                      />
-                      <i class="eye right-3 top-3 cursor-pointer absolute fa-regular fa-eye-slash"></i>
-                  </div>
-                  <div class="w-full relative">
-                      <label for="confirmPassword" class="sr-only">Confirm Password</label>
-                      <input
-                          id="confirmPassword"
-                          class="bg-slate-100 rounded-md p-2 w-full"
-                          required
-                          type="password"
-                          placeholder="Re-Type password"
-                      />
-                      <i class="eye cursor-pointer right-3 top-3 absolute fa-regular fa-eye-slash"></i>
-                  </div>
-                  <div id="error" class="hidden gap-1 text-sm rounded-md bg-red-100 p-2">
-                      <span class="text-red-500">Error:</span>
-                      <span class="text-red-900">Passwords do not match. Please try again.</span>
-                  </div>
-                  <button type="submit" class="bg-blue-400 rounded-md p-2 w-full">Reset</button>
-              </form>
-              <a href="/" class="w-fit text-blue-600 underline block text-center">Back to sign in</a>
-          </div>
+        <p class="text-center text-3xl">Reset Password</p>
+        <p class="text-center py-2 w-56 m-auto text-sm">
+          Please enter your new password
+        </p>
       </div>
+      <div class="p-4 grid gap-3">
+        <form action="" class="grid gap-3" id="form">
+          <div class="w-full relative">
+            <label for="password" class="sr-only">Password</label>
+            <input
+              id="password"
+              class="bg-slate-100 w-full rounded-md p-2"
+              required
+              type="password"
+              placeholder="Password"
+            />
+            <i
+              class="eye right-3 top-3 cursor-pointer absolute fa-regular fa-eye-slash"
+            ></i>
+            <p class="text-[11.8px] pt-1">
+              Cannot ne a previously used password
+            </p>
+          </div>
+          <div
+            id="passwordError"
+            class="hidden justify-start items-center gap-2 text-sm rounded-md"
+          >
+            <span
+              class="text-sm bg-red-500 text-white rounded-full flex justify-center items-center h-5 w-5 p-2"
+              >!</span
+            ><p class="text-red-900">
+              Password doesn't meet the required pattern
+            </p>
+          </div>
+          <div class="w-full relative">
+            <label for="confirmPassword" class="sr-only">Confirm Password</label
+            >
+            <input
+              id="confirmPassword"
+              class="bg-slate-100 rounded-md p-2 w-full"
+              required
+              type="password"
+              placeholder="Re-Type password"
+            />
+            <i
+              class="eye cursor-pointer right-3 top-3 absolute fa-regular fa-eye-slash"
+            ></i>
+          </div>
+          <div
+            id="doesntMatchError"
+            class="hidden justify-start items-center gap-2 text-sm rounded-md"
+          >
+            <span
+              class="text-sm bg-red-500 text-white rounded-full flex justify-center items-center h-5 w-5 p-2"
+              >!</span
+            ><p class="text-red-900">Password doesn't match.</p>
+          </div>
+          <button type="submit" class="bg-blue-400 rounded-md p-2 w-full"
+            >Reset</button
+          >
+        </form>
+        <div class="text-md">
+          <p>password must contain:</p>
+          <div class="text-[12px]">
+            <li>Minimum of 10 characters</li>
+            <li>At least one uppercase letter</li>
+            <li>At least one special character</li>
+          </div>
+        </div>
+      </div>
+    </div>
   </section>
 </main>
 
 <script>
-  const eyes = document.querySelectorAll('.eye');
-  Array.from(eyes).forEach(eye => {
-      eye.addEventListener("click", () => {
-          (eye.previousElementSibling as HTMLInputElement).type = (eye.previousElementSibling as HTMLInputElement).type === 'password' ? 'text' : 'password';
-          eye.classList.toggle('fa-eye');
-          eye.classList.toggle('fa-eye-slash');
-      });
+  const eyes = document.querySelectorAll(".eye");
+  Array.from(eyes).forEach((eye) => {
+    eye.addEventListener("click", () => {
+      (eye.previousElementSibling as HTMLInputElement).type =
+        (eye.previousElementSibling as HTMLInputElement).type === "password"
+          ? "text"
+          : "password";
+      eye.classList.toggle("fa-eye");
+      eye.classList.toggle("fa-eye-slash");
+    });
   });
-  
+
+  const password = document.getElementById("password") as HTMLInputElement;
+  const confirmPassword = document.getElementById(
+    "confirmPassword"
+  ) as HTMLInputElement;
+  const doesntMatchError = document.getElementById("doesntMatchError");
+  const form = document.getElementById("form");
+
+  const passwordError = document.getElementById("passwordError");
+  const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{8,}$/;
+
+  password.addEventListener("change", () => {
+    if (!passwordRegex.test(password.value)) {
+      passwordError.classList.contains("hidden")
+        ? passwordError.classList.replace("hidden", "flex")
+        : passwordError.classList.replace("flex", "hidden");
+    }
+  });
+
+  const url = new URL(window.location.href);
+  const token = url.searchParams.get("token");
+
+  form.addEventListener("submit", (e) => {
+    e.preventDefault();
+    if (password.value != confirmPassword.value) {
+      doesntMatchError.classList.replace("hidden", "flex");
+    } else {
+      const result = {
+        password: password.value,
+      };
+      fetch("http://localhost:3000/api/auth/resetPassword", {
+        method: "POST",
+        headers: {
+          "content-type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+        body: JSON.stringify(result),
+      })
+        .then((response) => {
+          if (!response.ok) {
+            return console.log("Response error");
+          }
+          return response.json();
+        })
+        .then((data) => {
+          console.log(data);
+        })
+        .catch((err) => {
+          console.error(err);
+        });
+    }
+  });
 </script>
