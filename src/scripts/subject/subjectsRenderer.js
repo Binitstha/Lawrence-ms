@@ -136,13 +136,14 @@ function subNameRender(semesterId) {
 		semester.subjects.forEach((subject) => {
 
             let chapters='';
+            let itertaions;
 
             for(let i=0;i<7;i++){
-                chapters+=`<div class="whitespace-nowrap overflow-hidden">- ${subject.chapters[i]} </div>`;
+                chapters+=`<div class="whitespace-nowrap overflow-hidden">- ${subject.chapters[i]||'-'} </div>`;
             }
 
             const newItem=document.createElement('div');
-            newItem.innerHTML=`<div  class="bg-blue-300 px-5 py-2 rounded-md">
+            newItem.innerHTML=`<div  class="bg-blue-300 px-5 py-2 rounded-md shadow-lg">
             <div id="subjectTopic" class="topic whitespace-nowrap overflow-hidden bg-white px-2 rounded-md font-semibold text-center " >${subject.subjectName}</div>
             <div id="subjectList overflow-hidden whitespace-nowrap" class="mt-5">
                 ${chapters}
