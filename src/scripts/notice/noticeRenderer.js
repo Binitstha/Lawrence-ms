@@ -25,6 +25,7 @@ fetch('http://localhost:3000/api/notice/getNotices',{
     noticeContainer.appendChild(item);
     });
     assignNoticeListeners();
+    document.getElementById('loadingNoticesDisplay').classList.add('hidden');
     return;
 });
 

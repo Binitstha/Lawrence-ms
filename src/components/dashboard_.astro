@@ -65,7 +65,7 @@ import '../css/calander/fullCalander.css';
             </div>
             <hr class=" border-gray-200 border-1  w-[94%] ml-[2%] mb-3">
             <div id="noticeContainer" class=" overflow-y-scroll h-80">
-                
+                <div id="loadingNoticesDisplay" class="pl-5 font-medium">Loading notices<span id="loadingDot"></span></div>
             </div>
         </div>
         <div class="calender border m-2 rounded-md shadow-lg w-full md:w-[480px] p-2  h-fit  bg-gray-50 hover:shadow-xl transition-all ease-in-out duration-300" id="calendar">
@@ -88,25 +88,15 @@ import '../css/calander/fullCalander.css';
 <script src="../scripts/notice/noticeRenderer.js"></script>
 
 <script type="module">
-
-// import { $ } from 'https://code.jquery.com/jquery-3.7.1.js';
-
-//     $(document).ready(() => {
-//         $('#calendar').fullCalendar({
-//             events: [
-//                 {
-//                     title: 'Event 1',
-//                     start: '2023-12-12',
-//                 },
-//                 {
-//                     title: 'Event 2',
-//                     start: '2023-12-15',
-//                     end: '2023-12-19',
-//                 },
-//                 // Add more events as needed
-//             ],
-//         });
-//     });
+const loadingDisplay=document.getElementById('loadingDot');
+const setLoading=()=>{
+    loadingDisplay.innerHTML='';
+    setTimeout(()=>{loadingDisplay.innerHTML='.'},250);
+    setTimeout(()=>{loadingDisplay.innerHTML='..'},500);
+    setTimeout(()=>{loadingDisplay.innerHTML='...'},750);
+    setTimeout(()=>{setLoading()},1000);
+}
+setLoading();
 </script>
 
 
