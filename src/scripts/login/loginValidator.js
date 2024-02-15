@@ -1,6 +1,6 @@
 import Cookies from "js-cookie";
 if (window.location.href!='/'){
-    if(!localStorage.getItem('user-details')){
+    if(!Cookies.get('token')){
         window.location.href='/';
     }
 }

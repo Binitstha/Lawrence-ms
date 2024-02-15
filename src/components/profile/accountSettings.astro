@@ -119,7 +119,7 @@ import ProfileLayout from "./profileLayout.astro";
   const userImage = document.getElementById("userImage");
 
   const token = localStorage.getItem("token");
-  fetch("http://localhost:3000/api/auth/getFullUserDetails", {
+  fetch("http://localhost:3000/auth/getFullUserDetails", {
     method: "POST",
     headers: {
       "content-type": "application/json",

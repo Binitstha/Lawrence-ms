@@ -54,7 +54,7 @@
     const userImage = document.getElementById("userImage")
 
   const token = localStorage.getItem('token')
-  fetch("http://localhost:3000/api/auth/getFullUserDetails", {
+  fetch("http://localhost:3000/auth/getFullUserDetails", {
 		method: "POST",
 		headers: {
 			"content-type": "application/json",
@@ -66,9 +66,7 @@
 		}
 		return response.json();
 	}).then((data) => {
-        console.log(data)
 		const { photo, ...userDetail } = data.data
-        console.log(photo)
         userImage.setAttribute("src",`http://localhost:3000/${photo}`)
 	}).catch((err) => {
 		console.error(err)

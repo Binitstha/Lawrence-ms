@@ -1,0 +1,31 @@
+<div class="flex gap-2 text-blue-600 justify-center">
+	<div><i id="icon1" class="fa-solid fa-circle transition-all ease-in-out duration-[0.9s]"></i></div>
+	<div><i id="icon2" class="fa-solid fa-circle transition-all ease-in-out duration-[0.9s]"></i></div>
+	<div><i id="icon3" class="fa-solid fa-circle transition-all ease-in-out duration-[0.9s]"></i></div>
+</div>
+
+<script is:inline>
+	const icon1 = document.getElementById("icon1");
+	const icon2 = document.getElementById("icon2");
+	const icon3 = document.getElementById("icon3");
+
+	const animate = () => {
+		setTimeout(() => {
+			icon2.classList.remove("transform", "-translate-y-1");
+            icon3.classList.remove("transform", "-translate-y-1");
+			icon1.classList.add("transform", "-translate-y-1");
+		}, 400);
+		setTimeout(() => {
+			icon3.classList.remove("transform", "-translate-y-1");
+			icon1.classList.remove("transform", "-translate-y-1");
+			icon2.classList.add("transform", "-translate-y-1");
+		}, 800);
+		setTimeout(() => {
+			icon2.classList.remove("transform", "-translate-y-1");
+			icon1.classList.remove("transform", "-translate-y-1");
+			icon3.classList.add("transform", "-translate-y-1");
+            animate(); 
+		}, 1200);
+	};
+    animate();
+</script>

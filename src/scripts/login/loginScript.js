@@ -1,4 +1,5 @@
 const passwordInput = document.getElementById("password");
+import Cookies from "js-cookie";
 // change eye icon
 const eyeIcon = document.getElementById("eyeIcon");
 eyeIcon.addEventListener("click", () => {
@@ -12,11 +13,27 @@ eyeIcon.addEventListener("click", () => {
 //login
 const loginBtn = document.getElementById("loginBtn");
 
+const loginBtnLoading=document.getElementById("loginBtn")
+const loadingText=document.getElementById("loadingText");
+const loadingDots=document.getElementById("loadingDots");
 const setLoading = () => {
-	document.getElementById("loginBtn").innerHTML = "Logging in...";
+	loadingText.classList.add("hidden");
+	loadingDots.classList.remove("hidden");
+	// setTimeout(()=>{
+	// 	loginBtnLoading.innerHTML = "Logging in..";
+	// },250);
+	// setTimeout(()=>{
+	// 	loginBtnLoading.innerHTML = "Logging in...";
+	// },500);
+	// setTimeout(()=>{
+	// 	setLoading();
+	// },750);
+
 };
 const removeLoading = () => {
 	document.getElementById("loginBtn").innerHTML = "Login";
+	loadingText.classList.remove("hidden");
+	loadingDots.classList.add("hidden");
 };
 const errorBox = document.getElementById("errorBox")
 
@@ -38,7 +55,7 @@ const fetchToken = (email, pass) => {
 		email: email,
 		password: pass,
 	};
-	fetch("http://localhost:3000/api/auth/signIn", {
+	fetch("http://localhost:3000/auth/signIn", {
 		method: "POST",
 		headers: {
 			"content-type": "application/json",
@@ -57,14 +74,14 @@ const fetchToken = (email, pass) => {
 				errorBox.classList.replace("hidden","flex")
 				return console.log(resData.error.message);
 			}
-			document.cookie = "user-detail" + JSON.stringify(resData.data);
-			localStorage.setItem("token", resData.data);
+			Cookies.set("token", resData.data, { expires: 15 });
+			// localStorage.setItem("token", resData.data);
 			return storeDataToLocalstorage(resData.data);
 		});
 };
 
 const storeDataToLocalstorage = async (token) => {
-	fetch("http://localhost:3000/api/auth/getFullUserDetails", {
+	fetch("http://localhost:3000/auth/getFullUserDetails", {
 		method: "POST",
 		headers: {
 			"content-type": "application/json",
