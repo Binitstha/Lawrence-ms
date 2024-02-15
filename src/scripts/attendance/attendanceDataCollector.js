@@ -1,5 +1,5 @@
 const submitBtn=document.getElementById('submitBtn');
-
+import Cookies from "js-cookie";
 submitBtn.addEventListener('click',()=>{
     const checkBoxes=document.querySelectorAll('input[type="checkbox"]');
     console.log(Array.from(checkBoxes));
@@ -13,6 +13,7 @@ submitBtn.addEventListener('click',()=>{
         method:'POST',
         headers:{
             'content-type':'application/json',
+            "Authorization": `Bearer ${Cookies.get("token")}`
         },
         body:JSON.stringify(stAtt)
 })

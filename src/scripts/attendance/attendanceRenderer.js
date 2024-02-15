@@ -1,36 +1,34 @@
 const loadingAttendanceDiv = document.getElementById("loadingAttendance");
 const loadingAnimation = document.getElementById("loadingAnimation");
-
+import Cookies from "js-cookie";
 
 const setLoading = () => {
 	loadingAnimation.innerHTML = "";
-	setTimeout(()=>{
-		loadingAnimation.innerHTML='.';
-	},250);
+	setTimeout(() => {
+		loadingAnimation.innerHTML = ".";
+	}, 250);
 
-	setTimeout(()=>{
-		loadingAnimation.innerHTML='..';
-	},500);
+	setTimeout(() => {
+		loadingAnimation.innerHTML = "..";
+	}, 500);
 
-	setTimeout(()=>{
-		loadingAnimation.innerHTML='...';
-	},750);
+	setTimeout(() => {
+		loadingAnimation.innerHTML = "...";
+	}, 750);
 
-	setTimeout(()=>{
+	setTimeout(() => {
 		setLoading();
-	},1000);
+	}, 1000);
 };
-
-
 
 const fetchAttendance = (semesterId) => {
 	setLoading();
 	fetch(
-		`http://localhost:3000/api/attendance/getAttendance?semesterId=${
-			semesterId || 1
-		}`,
-		{
+		`http://localhost:3000/api/attendance/getAttendance?semesterId=${semesterId || 1}`,{
 			method: "GET",
+			headers: {
+				"authorization": `Bearer ${Cookies.get("token")}`,
+			}
 		}
 	)
 		.then((response) => {
@@ -67,4 +65,3 @@ const semesterSelect = document.getElementById("semesterSelect");
 semesterSelect.addEventListener("change", () => {
 	return fetchAttendance(semesterSelect.value);
 });
-

@@ -1,4 +1,5 @@
 // import assignNoticeListeners from 'src/scripts/renderer/noticeRenderer.js'
+import Cookies from "js-cookie";
 const addNoticeModal = document.getElementById('addNoticeModal');
 document.getElementById('addNotice').addEventListener('click', (e) => {
     e.preventDefault();
@@ -24,6 +25,7 @@ document.getElementById('submitNotice').addEventListener('click', () => {
         method: 'POST',
         headers: {
             "content-type": "application/json",
+            "authorization": "Bearer " + Cookies.get("token"),
         },
         body: JSON.stringify(requestBody),
     }).then((response) => {

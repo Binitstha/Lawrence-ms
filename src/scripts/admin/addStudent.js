@@ -1,3 +1,4 @@
+import Cookies from "js-cookie";
 document.getElementById("addStudentForm").addEventListener("submit", (e) => {
 	e.preventDefault();
 	const formData = new FormData(e.target);
@@ -5,6 +6,10 @@ document.getElementById("addStudentForm").addEventListener("submit", (e) => {
 	fetch("http://localhost:3000/api/student/addStudent", {
 		method: "POST",
 		body: formData,
+		headers:{
+			"context-type":"multipart/form-data",
+			"Authorization": `Bearer ${Cookies.get("token")}`
+		}
 	})
 		.then((response) => {
 			return response.json();

@@ -1,3 +1,4 @@
+import Cookies from "js-cookie";
 import { assignmentFetch } from "./assignmentRenderer";
 const closeBtn = document.getElementById("addAssignmentModalCloseBtn");
 const assinmentModel = document.getElementById("addAssignmentModal");
@@ -37,6 +38,7 @@ submit.addEventListener("click", () => {
 		method: "POST",
 		headers: {
 			"content-type": "application/json",
+			"Authorization": `Bearer ${Cookies.get("token")}`
 		},
 		body: JSON.stringify(result)
 	})

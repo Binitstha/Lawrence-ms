@@ -1,8 +1,10 @@
+import Cookies from "js-cookie";
 let notices = [];
 fetch("http://localhost:3000/api/notice/getNotices", {
 	method: "GET",
 	headers: {
 		"content-type": "application/json",
+		"authorization": "Bearer " + Cookies.get("token"),
 	},
 })
 	.then((response) => {

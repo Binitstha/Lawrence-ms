@@ -1,3 +1,4 @@
+import Cookies from "js-cookie";
 const studentsContainer=document.getElementById('studentsContainer');
 
 const fetchStudents=async ()=>{
@@ -5,6 +6,7 @@ const fetchStudents=async ()=>{
         method:'GET',
         headers:{
             "content-type":"application/json",
+            "authorization": "Bearer " + Cookies.get("token"),
         }
     }).then((response)=>{
         if(!response.ok){

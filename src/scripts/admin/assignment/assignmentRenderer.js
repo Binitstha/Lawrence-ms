@@ -2,7 +2,7 @@
 const assignmentListDiv = document.getElementById("assignmentListDiv");
 const assignmentModal = document.getElementById("assignmentViewModal");
 const closeBtn = document.getElementById("viewAssignmentModeCloseBtn");
-
+import Cookies from "js-cookie";
 closeBtn.addEventListener("click", () => {
 	assignmentModal.classList.replace("top-0", "top-[-100vh]");
 });
@@ -24,6 +24,7 @@ export function assignmentFetch(sem) {
 		method: "GET",
 		headers: {
 			"content-type": "application/json",
+			"Authorization": `Bearer ${Cookies.get("token")}`
 		},
 	})
 		.then((response) => {
@@ -95,6 +96,7 @@ function viewAssingment() {
 				method: "Delete",
 				headers: {
 					"content-type": "application/json",
+					"Authorization": `Bearer ${Cookies.get("token")}`
 				},
 				body: JSON.stringify(result)
 			})
@@ -159,6 +161,7 @@ function viewAssingment() {
 					method: "post",
 					headers: {
 						"content-type": "application/json",
+						"Authorization": `Bearer ${Cookies.get("token")}`
 					},
 					body: (JSON.stringify(result))
 				})
