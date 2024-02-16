@@ -5,9 +5,9 @@ const eyeIcon = document.getElementById("eyeIcon");
 eyeIcon.addEventListener("click", () => {
 	eyeIcon.classList.contains("fa-eye")
 		? eyeIcon.classList.replace("fa-eye", "fa-eye-slash") &&
-		  passwordInput.setAttribute("type", "password")
+		passwordInput.setAttribute("type", "password")
 		: eyeIcon.classList.replace("fa-eye-slash", "fa-eye") &&
-		  passwordInput.setAttribute("type", "text");
+		passwordInput.setAttribute("type", "text");
 });
 
 //login
@@ -26,14 +26,14 @@ const removeLoading = () => {
 };
 const errorBox = document.getElementById("errorBox");
 
-// const passwordDiv = document.getElementById("password");
-// passwordDiv.addEventListener("change", () => {
-// 	errorBox.classList.replace("flex", "hidden");
-// });
+const passwordDiv = document.getElementById("password");
+passwordDiv.addEventListener("change", () => {
+	errorBox.classList.replace("flex", "hidden");
+});
 const form = document.getElementById("form");
 
 
-loginBtn.addEventListener("click", (e) => {
+form.addEventListener("submit", (e) => {
 	e.preventDefault();
 	setLoading();
 	const email = document.getElementById("email").value;
@@ -56,7 +56,6 @@ const fetchToken = (email, pass) => {
 		.then((response) => {
 			if (!response.ok) {
 				return console.log("response error");
-				
 			}
 			return response.json();
 		})

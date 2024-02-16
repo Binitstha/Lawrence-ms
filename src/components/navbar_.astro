@@ -7,20 +7,20 @@
         <img src="../../assets/logo.png" class="h-[2.8rem]" alt="user photo">
     </div>
         <!-- user profile -->
-        <div id="userProfile" class="z-10 user-profile items-center   rounded-full cursor-pointer  bg-gray-100 w-fit absolute right-1 top-2 " >
-            <div class="profile-img flex justify-between items-center px-2 pr-5 py-1 bg-gray-100 rounded-md" >
+        <div id="userProfile" class="z-10  user-profile items-center rounded-xl cursor-pointer bg-gray-100 min-w-44 w-fit absolute right-3 top-[.4rem] " >
+            <div class="profile-img p-1 flex justify-start gap-1 px-2 pr-5 py-[.3rem] bg-gray-100 rounded-md" >
                 <div class="rounded-full border border-black w-10 h-10 mr-2">
                 <!-- <img src="assets/logo.png" class="h-11" alt=""> -->
                 </div>
-                <div class="name-and-position">
+                <div class="name-and-position flex flex-col item-center justify-center">
                     <div class="name text-black font-bold text-md leading-[15px]" id="navName"></div>
-                    <div class="position text-gray-500 text-sm" id="navPosition"></div>
+                    <div class="position text-gray-500 text-sm text-center" id="navPosition"></div>
                 </div>
             </div>
-            <div class="details hidden flex-col pt-2 transition-all ease-in-out shadow-xl" id="userDetails">
-                <a href="/profile/settings" class="hover:bg-blue-300 px-5 py-2 border-t-2 border-gray-400"><i class="fa-solid fa-gear"></i> Account Settings</a>
-                <a href="/profile/teacher" class="hover:bg-blue-300 px-5 py-2 "><i class="fa-solid fa-user"></i> Profile</a>
-                <a href="/" class="hover:bg-blue-300 px-5 py-2 rounded-md" id="logout"><i class="fa-solid fa-right-from-bracket "></i> Logout</a>
+            <div class="details shadow-xl hidden flex-col pt-1 w-full justify-center px-4 bg-gray-100  gap-4 transition-all rounded-b-xl items-start ease-in-out" id="userDetails">
+                <a href="/profile/settings" class="hover:text-gray-500 pt-1 border-t-2 border-gray-400"><i class="fa-solid fa-gear"></i> Account Settings</a>
+                <a href="/profile/teacher" class="hover:text-gray-500 "><i class="fa-solid fa-user"></i> Profile</a>
+                <a href="/" class="hover:text-gray-500 rounded-md pb-2" id="logout"><i class="fa-solid fa-right-from-bracket "></i> Logout</a>
             </div>
         </div>
 </div>
